@@ -15,4 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/events', 'EventsController@index');
+Route::group(['prefix' => 'events'], function () {
+	Route::get('/', 'EventsController@index');
+	Route::get('/detail', 'EventsController@detail');
+});
