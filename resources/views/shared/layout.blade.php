@@ -40,15 +40,17 @@
 			<section>@yield('Content')</section>
 		</div>
 
-		<footer>
-			<div class="container">
-				<p class="pull-xs-right">
-					<a href="#">Back to top</a>
-				</p>
-				<p>&copy; Team Gin Tonic | Advanced Programming | 2016 - 2017</p>
-			</div>
+		<footer class="">
+		<div class="container">
+			<p class="pull-xs-right">
+				<a href="#">Back to top</a>
+			</p>
+			<p class="pull-xs-right">&copy; Team Gin Tonic | Advanced Programming | 2016 - 2017</p>
+		</div>
 		</footer>
+		
 	</div>
+	
 	
 	<!-- Scripts -->
 	<script src="{{ @url('/bower_components/jquery/dist/jquery.min.js') }}"></script>
