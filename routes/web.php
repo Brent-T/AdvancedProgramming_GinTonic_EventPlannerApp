@@ -11,14 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
-Route::get('/home', function () {
-    return view('home.index');
-});
+Route::get('/home', 'HomeController@index');
 
-Route::get('/hallo', function () {
-    return view('hallo');
-});
+Route::get('/events', 'EventsController@index');
