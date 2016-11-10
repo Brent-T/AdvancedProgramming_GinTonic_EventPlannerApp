@@ -15,36 +15,20 @@
 </head>
 <body>
 	<div class="wrapper">
-		<nav class="navbar navbar-light bg-faded">
-			<a class="navbar-brand" href="{{ url('/') }}">Football Everyday</a>
-			<ul class="nav navbar-nav">
-				<li class="nav-item @if(!empty($section)) @if($section == 'games') active @endif @endif">
-					<a class="nav-link" href="{{ url('/games') }}">Games<!--  <span class="sr-only">(current)</span> --></a>
-				</li>
-				<li class="nav-item @if(!empty($section)) @if($section == 'teams') active @endif @endif">
-					<a class="nav-link" href="{{ url('/teams') }}">Teams</a>
-				</li>
-				<li class="nav-item @if(!empty($section)) @if($section == 'about') active @endif @endif">
-					<a class="nav-link" href="#">About</a>
-				</li>
-				<li class="nav-item @if(!empty($section)) @if($section == 'contact') active @endif @endif">
-					<a class="nav-link" href="#">Contact</a>
-				</li>
-				@if(Auth::check())			
-				<li class="nav-item pull-xs-right">
-					<a class="nav-link" href="{{ url('/logout') }}">Logout &lsqb; {{ Auth::user()->name }} &rsqb;</a>
-				</li>
-				@if(Auth::user()->is('admin'))
-				<li class="nav-item pull-xs-right">
-					<a class="nav-link @if(!empty($section)) @if($section == 'admin') active @endif @endif" href="{{ url('/admin') }}">Adminpanel</a>
-				</li>
-				@endif
-				@else
-				<li class="nav-item pull-xs-right">
-					<a class="nav-link" href="{{ url('/login') }}">Login</a>
-				</li>
-				@endif
-			</ul>
+		<nav class="navbar navbar-dark bg-inverse">
+			<button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+			<div class="collapse navbar-toggleable-md" id="navbarResponsive">
+				<a class="navbar-brand" href="#">Event Planner</a>
+				<ul class="nav navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+				<form class="form-inline float-lg-right">
+					<input class="form-control" type="text" placeholder="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+			</div>
 		</nav>
 
 		<div class="container">			
