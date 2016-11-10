@@ -17,18 +17,22 @@
 <body>
 	<div class="wrapper">
 		<nav class="navbar navbar-dark bg-inverse">
+
 			<button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+
 			<div class="collapse navbar-toggleable-md" id="navbarResponsive">
-				<a class="navbar-brand" href="#">Event Planner</a>
+
+				<a class="navbar-brand" href="{{ url('/home') }}">Event Planner</a>
+
 				<ul class="nav navbar-nav">
-					<li class="nav-item active">
-						<a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('/home') }}">Home </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('/events') }}">Events </a>
 					</li>
 				</ul>
-				<form class="form-inline float-lg-right">
-					<input class="form-control" type="text" placeholder="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
+
 			</div>
 		</nav>
 
@@ -41,7 +45,7 @@
 				<p class="pull-xs-right">
 					<a href="#">Back to top</a>
 				</p>
-				<p>&copy; Brent Timmermans | Serverside webscripten 2 | 2015 - 2016</p>
+				<p>&copy; Team Gin Tonic | Advanced Programming | 2016 - 2017</p>
 			</div>
 		</footer>
 	</div>
