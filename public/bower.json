@@ -1,0 +1,20 @@
+{
+  "name": "EventPlannerApp",
+  "homepage": "https://github.com/Brent-T/AdvancedProgramming_GinTonic_EventPlannerApp",
+  "authors": [
+    "Brent & Alessio"
+  ],
+  "description": "Project Advanced Programming",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.5"
+  }
+}
