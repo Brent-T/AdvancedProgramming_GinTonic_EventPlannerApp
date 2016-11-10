@@ -1,6 +1,5 @@
 @extends('shared.layout')
 
 @section('Content')
-<h1>Events detail</h1>
-<p>Hello</p>
+<p>This is the detail page of event number {{ $id }}... Coming soon...</p>
 @endsection

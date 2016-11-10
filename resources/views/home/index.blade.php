@@ -1,5 +1,5 @@
 @extends('shared.layout')
 
 @section('Content')
-<h1>index - Home</h1>
+<h1>Welcome to EventPlanner</h1>
 @endsection

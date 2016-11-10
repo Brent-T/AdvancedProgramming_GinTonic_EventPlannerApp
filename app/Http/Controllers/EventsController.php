@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Event;
+
 class EventsController extends Controller
 {
     public function index() {
-    	$json = file_get_contents('http://gturnquist-quoters.cfapps.io/api/random');
-    	$data = json_decode($json, TRUE);
-    	return view('events.index', ['data' => $data]);
+    	$events = Event::TestGetAllEvents();
+    	return view('events.index', ['events' => $events]);
     }
 
-    public function detail() {
-    	return view('events.detail');
+    public function detail($id) {
+    	return view('events.detail', ['id' => $id]);
     }
 }
