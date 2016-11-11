@@ -44,6 +44,9 @@
 	<div class="card card-block">
 		<h4 class="card-title">{{ $event->name }} - {{ $event->id }}</h4>
 		<p class="card-text">{{ $event->description }}</p>
+        <p class="card-text">&commat;{{ $event->location }}</p>
+        <p class="card-text">Start: {{ $event->datetime_start }}</p>
+        <p class="card-text">End: {{ $event->datetime_end }}</p>        
 		<a href="./events/{{ $event->id }}" class="card-link">Discover this event</a>
 	</div>
 @empty

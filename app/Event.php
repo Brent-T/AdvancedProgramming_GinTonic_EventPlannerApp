@@ -17,12 +17,12 @@ class Event extends Model
 	public $datetime_end;
 	public $id;
 
-	public function __construct($name, $description, $location, $date_start, $date_end, $id = '1') {
+	public function __construct($name, $description, $location, $datetime_start, $datetime_end, $id = '1') {
 		$this->name = $name;
 		$this->description = $description;
 		$this->location = $location;
-		$this->date_start = $date_start;
-		$this->date_end = $date_end;
+		$this->datetime_start = $datetime_start;
+		$this->datetime_end = $datetime_end;
 		$this->id = $id;
 	}
 
@@ -35,22 +35,24 @@ class Event extends Model
 	// Return all events found by webservice
 	public static function TestGetAllEvents() {
 		// Sample data that should represent data received from webservice
-		$test_string = '{
-			"5" : {
+		$test_string = '[
+			{
+				"id" : 1,
 				"name" : "test1",
 				"description" : "Lorem ipsum dolor sit amet, dolore habemus inimicus quo no, mea eirmod nusquam repudiare te. Ex solum nullam fastidii quo, sit ea ubique semper persius. Usu diam omnesque indoctum et. Delenit sententiae voluptatum ei usu, no tamquam euripidis suscipiantur sit.",
 				"location" : "gegeg",
 				"datetime_start" : "tttt",
 				"datetime_end" : "hhhrhrhr"
 			},
-			"19" : {
+			{
+				"id" : 4,
 				"name" : "test2",
 				"description" : "Lorem ipsum dolor sit amet, dolore habemus inimicus quo no, mea eirmod nusquam repudiare te. Ex solum nullam fastidii quo, sit ea ubique semper persius. Usu diam omnesque indoctum et. Delenit sententiae voluptatum ei usu, no tamquam euripidis suscipiantur sit.",
 				"location" : "gegeg",
 				"datetime_start" : "tttt",
 				"datetime_end" : "hhhrhrhr"
 			}
-		}';
+		]';
 		$test_data = json_decode($test_string, TRUE);
 		return self::convertToEventList($test_data);
 	}
@@ -58,14 +60,14 @@ class Event extends Model
 	// Always returns an arrays of events
 	private static function convertToEventList($data) {
 		$events = array();
-		foreach ($data as $key => $event) {
+		foreach ($data as $event) {
 			array_push($events, new Event(
 				$event['name'], 
 				$event['description'], 
 				$event['location'], 
 				$event['datetime_start'], 
 				$event['datetime_end'],
-				$key
+				$event['id']
 			));
 		}
 		return $events;
