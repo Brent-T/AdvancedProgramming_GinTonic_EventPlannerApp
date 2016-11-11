@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
 	// Spring web service url
-    private static $url = 'http://gturnquist-quoters.cfapps.io/api/random'; // ONLY FOR TESTING PURPOSE
+    private static $url = ''; // URL TO WEBSERVICE
 
     // Properties of Event
     public $name;
@@ -15,6 +15,7 @@ class Event extends Model
 	public $location;
 	public $datetime_start;
 	public $datetime_end;
+	public $id;
 
 	public function __construct($name, $description, $location, $date_start, $date_end, $id = '1') {
 		$this->name = $name;
@@ -33,16 +34,16 @@ class Event extends Model
 
 	// Return all events found by webservice
 	public static function TestGetAllEvents() {
-		// Sample data from webservice
+		// Sample data that should represent data received from webservice
 		$test_string = '{
-			"event1" : {
+			"5" : {
 				"name" : "test1",
 				"description" : "Lorem ipsum dolor sit amet, dolore habemus inimicus quo no, mea eirmod nusquam repudiare te. Ex solum nullam fastidii quo, sit ea ubique semper persius. Usu diam omnesque indoctum et. Delenit sententiae voluptatum ei usu, no tamquam euripidis suscipiantur sit.",
 				"location" : "gegeg",
 				"datetime_start" : "tttt",
 				"datetime_end" : "hhhrhrhr"
 			},
-			"event2" : {
+			"19" : {
 				"name" : "test2",
 				"description" : "Lorem ipsum dolor sit amet, dolore habemus inimicus quo no, mea eirmod nusquam repudiare te. Ex solum nullam fastidii quo, sit ea ubique semper persius. Usu diam omnesque indoctum et. Delenit sententiae voluptatum ei usu, no tamquam euripidis suscipiantur sit.",
 				"location" : "gegeg",
@@ -57,13 +58,14 @@ class Event extends Model
 	// Always returns an arrays of events
 	private static function convertToEventList($data) {
 		$events = array();
-		foreach ($data as $event) {
+		foreach ($data as $key => $event) {
 			array_push($events, new Event(
 				$event['name'], 
 				$event['description'], 
 				$event['location'], 
 				$event['datetime_start'], 
-				$event['datetime_end']
+				$event['datetime_end'],
+				$key
 			));
 		}
 		return $events;
