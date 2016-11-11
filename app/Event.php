@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-	// Spring web service url
-    private static $url = ''; // URL TO WEBSERVICE
+	// URL TO WEBSERVICE
+    private static $url = ''; 
 
     // Properties of Event
     public $name;
