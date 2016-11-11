@@ -33,9 +33,10 @@ class EventsController extends Controller
 			$request->description,
 			$request->location,
 			($request->date_start . ' ' . $request->time_start),
-			($request->date_end . ' ' . $request->time_end)
+			($request->date_end . ' ' . $request->time_end),
+			1
 		));
 
-		return redirect()->action('EventsController@index');
+		// return redirect()->action('EventsController@index');
 	}
 }

@@ -73,7 +73,7 @@ class Event extends Model
 		return $events;
 	}
 
-	public static function AddEvent() {
-		var_dump('hello world');
+	public static function AddEvent($event) {
+		var_dump($event->toJson());
 	}
 }
