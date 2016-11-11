@@ -28,14 +28,14 @@ class EventsController extends Controller
 			'time_end' => 'required'
 		]);
 
-		$testEvent = new Event(
+		Event::AddEvent(new Event(
 			$request->name,
 			$request->description,
 			$request->location,
 			($request->date_start . ' ' . $request->time_start),
 			($request->date_end . ' ' . $request->time_end)
-		);
+		));
 
-		var_dump($testEvent);
+		return redirect()->action('EventsController@index');
 	}
 }

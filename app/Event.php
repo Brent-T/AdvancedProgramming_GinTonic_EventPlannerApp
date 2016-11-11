@@ -69,5 +69,9 @@ class Event extends Model
 			));
 		}
 		return $events;
-	}	
+	}
+
+	public static function AddEvent() {
+		var_dump('hello world');
+	}
 }
