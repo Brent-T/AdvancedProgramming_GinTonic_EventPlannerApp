@@ -16,10 +16,13 @@ class Event extends Model
 	public $datetime_start;
 	public $datetime_end;
 
-	public function __construct($name, $description, $location, $date_start, $date_end) {
+	public function __construct($name, $description, $location, $date_start, $date_end, $id = '1') {
 		$this->name = $name;
 		$this->description = $description;
 		$this->location = $location;
+		$this->date_start = $date_start;
+		$this->date_end = $date_end;
+		$this->id = $id;
 	}
 
 	// Return all events found by webservice

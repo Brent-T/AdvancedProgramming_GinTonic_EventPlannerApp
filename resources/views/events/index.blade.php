@@ -9,6 +9,7 @@
 			<h4 class="card-title">{{ $event->name }}</h4>
 			<p class="card-text">{{ $event->description }}</p>
 			<a href="#" class="card-link">Discover this event</a>
+			<p>{{ $event->id }}</p>
 		</div>
 	@empty
 		<p>No events where found...</p>
