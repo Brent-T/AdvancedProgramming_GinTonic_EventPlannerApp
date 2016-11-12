@@ -10,21 +10,11 @@
 
 <div class="container">
     <div class="row">
-<<<<<<< HEAD
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group">
-=======
         <div class="col-xs-6 col-sm-6 col-md-6 form-group">
->>>>>>> c9129030629a4cc06a820656b7fe9791739df789
                 {!! Form::label('name', 'Name:') !!}
                 {!! Form::text('name', '', ['class' => 'form-control']) !!}
         </div>
-<<<<<<< HEAD
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group">
-=======
         <div class="col-xs-6 col-sm-6 col-md-6 form-group">
->>>>>>> c9129030629a4cc06a820656b7fe9791739df789
                 {!! Form::label('location', 'Location:') !!}
                 {!! Form::text('location', '', ['class' => 'form-control']) !!}
         </div>
@@ -36,41 +26,21 @@
         </div>
     </div>
     <div class="row">
-<<<<<<< HEAD
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group">
-=======
         <div class="col-xs-6 col-sm-6 col-md-6 form-group">
->>>>>>> c9129030629a4cc06a820656b7fe9791739df789
                 {!! Form::label('date_start', 'Start date:') !!}
                 {!! Form::date('date_start', '', ['class' => 'form-control', 'min' => '0']) !!}
         </div>
-<<<<<<< HEAD
-        <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-=======
         <div class="col-xs-6 col-sm-6 col-md-6 form-group">
->>>>>>> c9129030629a4cc06a820656b7fe9791739df789
                 {!! Form::label('time_start', 'Start time:') !!}
                 {!! Form::time('time_start', '', ['class' => 'form-control', 'min' => '0']) !!}
         </div>
     </div>
     <div class="row">
-<<<<<<< HEAD
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group">
-=======
         <div class="col-xs-6 col-sm-6 col-md-6 form-group">
->>>>>>> c9129030629a4cc06a820656b7fe9791739df789
                 {!! Form::label('date_end', 'End date:') !!}
                 {!! Form::date('date_end', '', ['class' => 'form-control', 'min' => '0']) !!}
         </div>
-<<<<<<< HEAD
-        <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-=======
         <div class="col-xs-6 col-sm-6 col-md-6 form-group">
->>>>>>> c9129030629a4cc06a820656b7fe9791739df789
                 {!! Form::label('time_end', 'End time:') !!}
                 {!! Form::time('time_end', '', ['class' => 'form-control', 'min' => '0']) !!}
         </div>
