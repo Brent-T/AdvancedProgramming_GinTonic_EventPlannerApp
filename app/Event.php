@@ -74,9 +74,7 @@ class Event extends Model
 	}
 
 	public static function AddEvent($event) {
-		// print_r($event);
-		var_dump($event->toArray());
-		var_dump($event->toJson());
-		// var_dump(json_encode((array)$event));
+
+
 	}
 }

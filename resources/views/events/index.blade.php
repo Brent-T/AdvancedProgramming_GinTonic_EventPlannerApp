@@ -11,13 +11,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 {!! Form::label('name', 'Name:') !!}
                 {!! Form::text('name', '', ['class' => 'form-control']) !!}
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 {!! Form::label('location', 'Location:') !!}
                 {!! Form::text('location', '', ['class' => 'form-control']) !!}
@@ -33,13 +33,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 {!! Form::label('date_start', 'Start date:') !!}
                 {!! Form::date('date_start', '', ['class' => 'form-control', 'min' => '0']) !!}
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
                 {!! Form::label('time_start', 'Start time:') !!}
                 {!! Form::time('time_start', '', ['class' => 'form-control', 'min' => '0']) !!}
@@ -47,13 +47,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 {!! Form::label('date_end', 'End date:') !!}
                 {!! Form::date('date_end', '', ['class' => 'form-control', 'min' => '0']) !!}
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
                 {!! Form::label('time_end', 'End time:') !!}
                 {!! Form::time('time_end', '', ['class' => 'form-control', 'min' => '0']) !!}
