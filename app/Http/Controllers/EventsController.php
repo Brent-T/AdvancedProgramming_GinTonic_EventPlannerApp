@@ -36,7 +36,7 @@ class EventsController extends Controller
 			($request->date_end . ' ' . $request->time_end),
 			1
 		));
-		
+
 		return redirect()->action('EventsController@index');
 	}
 }
