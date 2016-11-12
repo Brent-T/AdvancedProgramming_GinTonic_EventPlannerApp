@@ -74,9 +74,12 @@ class Event extends Model
 	}
 
 	public static function AddEvent($event) {
-		// print_r($event);
-		var_dump($event->toArray());
-		var_dump($event->toJson());
-		// var_dump(json_encode((array)$event));
+		$json_event = self::convertEventToJson($event);
+		var_dump($json_event);
+	}
+
+	private static function convertEventToJson($event) {
+		$json = '{ "name" : "' . $event->name . '", "description" : "' . $event->description . '", "location" : "' . $event->location . '", "datetime_start" : "' . $event->datetime_start . '", "datetime_end" : "' . $event->datetime_end . '" }';
+		return $json; 
 	}
 }
