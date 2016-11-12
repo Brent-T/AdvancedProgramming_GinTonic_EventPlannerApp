@@ -36,17 +36,18 @@
 			</div>
 		</nav>
 
-		<div class="container content">			
+		<div class="container content">         
 			<section>@yield('Content')</section>
 		</div>
 
-		<footer class="">
-		<div class="container">
-			<p class="pull-xs-right">
-				<a href="#">Back to top</a>
+
+		<footer class="text-muted">
+		  <div class="container">
+			<p class="float-xs-right">
+			  <a href="#">Back to top</a>
 			</p>
-			<p class="pull-xs-right">&copy; Team Gin Tonic | Advanced Programming | 2016 - 2017</p>
-		</div>
+			<p>&copy; Team Gin Tonic | Advanced Programming | 2016 - 2017</p>
+		  </div>
 		</footer>
 		
 	</div>
