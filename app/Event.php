@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
 	// URL TO WEBSERVICE
-    private static $url = ''; 
+    private static $url = 'http://localhost:9000'; 
 
     // Properties of Event
     public $name;
@@ -28,7 +28,7 @@ class Event extends Model
 
 	// Return all events found by webservice
 	public static function GetAllEvents() {
-		$events = json_decode(file_get_contents(self::$url), TRUE);
+		$events = json_decode(file_get_contents(self::$url.'/events'), TRUE);
 		return self::convertToEventList($events);
 	}
 
@@ -65,8 +65,8 @@ class Event extends Model
 				$event['name'], 
 				$event['description'], 
 				$event['location'], 
-				$event['datetime_start'], 
-				$event['datetime_end'],
+				time(), 
+				time(),
 				$event['id']
 			));
 		}

@@ -9,7 +9,7 @@ use App\Event;
 class EventsController extends Controller
 {
     public function index() {
-    	$events = Event::TestGetAllEvents();
+    	$events = Event::GetAllEvents();
     	return view('events.index', ['events' => $events]);
     }
 
