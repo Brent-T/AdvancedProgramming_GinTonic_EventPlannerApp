@@ -8,6 +8,15 @@
 @include('shared.errors')
 <h2>Create new event</h2>
 
+<!-- alerting user to fill in the title first -->
+
+<div id="alert-custom" class="alert alert-info alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Heads up!</strong> Fill in the title first.
+</div>
+
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6 form-group">
