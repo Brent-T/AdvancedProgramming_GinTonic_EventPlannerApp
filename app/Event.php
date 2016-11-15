@@ -28,33 +28,8 @@ class Event extends Model
 
 	// Return all events found by webservice
 	public static function GetAllEvents() {
-		$events = json_decode(file_get_contents(self::$url.'/events'), TRUE);
+		$events = json_decode(file_get_contents(self::$url . '/events'), TRUE);
 		return self::convertToEventList($events);
-	}
-
-	// Return all events found by webservice
-	public static function TestGetAllEvents() {
-		// Sample data that should represent data received from webservice
-		$test_string = '[
-			{
-				"id" : 1,
-				"name" : "test1",
-				"description" : "Lorem ipsum dolor sit amet, dolore habemus inimicus quo no, mea eirmod nusquam repudiare te. Ex solum nullam fastidii quo, sit ea ubique semper persius. Usu diam omnesque indoctum et. Delenit sententiae voluptatum ei usu, no tamquam euripidis suscipiantur sit.",
-				"location" : "gegeg",
-				"datetime_start" : "tttt",
-				"datetime_end" : "hhhrhrhr"
-			},
-			{
-				"id" : 4,
-				"name" : "test2",
-				"description" : "Lorem ipsum dolor sit amet, dolore habemus inimicus quo no, mea eirmod nusquam repudiare te. Ex solum nullam fastidii quo, sit ea ubique semper persius. Usu diam omnesque indoctum et. Delenit sententiae voluptatum ei usu, no tamquam euripidis suscipiantur sit.",
-				"location" : "gegeg",
-				"datetime_start" : "tttt",
-				"datetime_end" : "hhhrhrhr"
-			}
-		]';
-		$test_data = json_decode($test_string, TRUE);
-		return self::convertToEventList($test_data);
 	}
 
 	// Always returns an arrays of events
@@ -76,12 +51,30 @@ class Event extends Model
 	public static function AddEvent($event) {
 
 		$json_event = self::convertEventToJson($event);
-		var_dump($json_event);
+		// var_dump($json_event);
+		self::pushEventToWebservice($json_event);
 	}
 
 	private static function convertEventToJson($event) {
-		$json = '{ "name" : "' . $event->name . '", "description" : "' . $event->description . '", "location" : "' . $event->location . '", "datetime_start" : "' . $event->datetime_start . '", "datetime_end" : "' . $event->datetime_end . '" }';
+		$json = '{ "name" : "' . $event->name . '", "description" : "' . $event->description . '", "location" : "' . $event->location . '", "startDate" : "' . $event->datetime_start . '", "endDate" : "' . $event->datetime_end . '" }';
 		return $json; 
 
+	}
+
+	private static function pushEventToWebservice($json_event) {
+		$curl = curl_init(self::$url . '/addevent');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json_event);
+
+		$json_response = curl_exec($curl);
+
+		$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+		curl_close($curl);
+
+		$response = json_decode($json_response, true);
+		var_dump($response);
 	}
 }

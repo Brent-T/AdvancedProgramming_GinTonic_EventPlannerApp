@@ -37,6 +37,6 @@ class EventsController extends Controller
 			1
 		));
 
-		return redirect()->action('EventsController@index');
+		// return redirect()->action('EventsController@index');
 	}
 }
