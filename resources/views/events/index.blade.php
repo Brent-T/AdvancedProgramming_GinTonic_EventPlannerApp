@@ -79,7 +79,9 @@
 		<a href="./events/{{ $event->id }}" class="card-link">Discover this event</a>
 	</div>
 @empty
-	<p>No events where found...</p>
+	<div class="alert alert-info" role="alert">
+  		<strong>Oh no :'(</strong> you do not have any sheduled events.
+	</div>
 @endforelse
 
 @endsection
