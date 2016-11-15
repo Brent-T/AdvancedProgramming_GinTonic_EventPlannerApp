@@ -8,15 +8,25 @@ use App\Event;
 
 class EventsController extends Controller
 {
+	/**
+	 *  Index route returning an overview of 
+	 *  all the events found by the webservice
+	 */
     public function index() {
     	$events = Event::GetAllEvents();
     	return view('events.index', ['events' => $events]);
     }
 
+    /**
+	 *  Detail page of an event by id
+	 */
     public function detail($id) {
     	return view('events.detail', ['id' => $id]);
     }
 
+    /**
+	 *  Route for handling post of an event
+	 */
     public function addEvent(Request $request) {
 		$this->validate($request, [
 			'name' => 'required',
