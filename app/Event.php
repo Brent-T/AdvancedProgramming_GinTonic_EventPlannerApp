@@ -56,7 +56,9 @@ class Event extends Model
 	}
 
 	private static function convertEventToJson($event) {
-		$json = '{ "name" : "' . $event->name . '", "description" : "' . $event->description . '", "location" : "' . $event->location . '", "startDate" : "' . $event->datetime_start . '", "endDate" : "' . $event->datetime_end . '" }';
+		$json = 'name=' . $event->name . '&description=' . $event->description . '&location=' . $event->location . '&startDate=' . $event->datetime_start . '&endDate=' . $event->datetime_end;
+		// BACKUP
+		// $json = '{ "name" : "' . $event->name . '", "description" : "' . $event->description . '", "location" : "' . $event->location . '", "startDate" : "' . $event->datetime_start . '", "endDate" : "' . $event->datetime_end . '" }';
 		return $json; 
 
 	}
