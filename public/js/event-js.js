@@ -23,12 +23,19 @@ $(document).ready(function(){
 	$( "#toggle-init" ).focus(function() {
 		$('#jq-toggle').slideDown();
 	});
+
+	
 	
 	// If no title -> slide up
-	$( "#toggle-init" ).focusout(function() {
-		if ($( "#toggle-init" ).val() == '') {
-			$('#jq-toggle').slideUp();
-		}
-	});
+	// $( "#toggle-init" ).focusout(function() {
+	// 	if ($( "#toggle-init" ).val() == '') {
+	// 		$('#jq-toggle').slideUp();
+	// 	}
+	// });
 	
 });
+
+
+var customSlideUp = function() {
+		$('#jq-toggle').slideUp();
+}

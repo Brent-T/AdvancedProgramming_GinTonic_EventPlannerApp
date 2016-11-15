@@ -60,6 +60,7 @@
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6 form-group">
 					{!! Form::submit('Add event', ['class' => 'btn btn-primary']) !!}
+					<button onclick="customSlideUp()" type="button" class="btn btn-outline-danger">Cancel</button>
 			</div>
 		</div>
 	</div>
