@@ -65,8 +65,8 @@ class Event extends Model
 				$event['name'], 
 				$event['description'], 
 				$event['location'], 
-				time(), 
-				time(),
+				$event['startDate'],
+				$event['endDate'],
 				$event['id']
 			));
 		}
