@@ -50,33 +50,35 @@ class Event extends Model
 
 	public static function AddEvent($event) {
 
-		$json_event = self::convertEventToJson($event);
-		// var_dump($json_event);
+		$json_event = self::createPostFields($event);
 		self::pushEventToWebservice($json_event);
 	}
 
-	private static function convertEventToJson($event) {
-		$json = 'name=' . $event->name . '&description=' . $event->description . '&location=' . $event->location . '&startDate=' . $event->datetime_start . '&endDate=' . $event->datetime_end;
-		// BACKUP
-		// $json = '{ "name" : "' . $event->name . '", "description" : "' . $event->description . '", "location" : "' . $event->location . '", "startDate" : "' . $event->datetime_start . '", "endDate" : "' . $event->datetime_end . '" }';
+	private static function createPostFields($event) {
+		$json = 
+			'name=' 
+			. $event->name 
+			. '&description=' 
+			. $event->description 
+			. '&location=' 
+			. $event->location 
+			. '&startDate=' 
+			. $event->datetime_start 
+			. '&endDate=' 
+			. $event->datetime_end;
 		return $json; 
 
 	}
 
+	// SRC: http://stackoverflow.com/questions/15834164/sending-data-to-a-webservice-using-post
 	private static function pushEventToWebservice($json_event) {
 		$curl = curl_init(self::$url . '/addevent');
 		curl_setopt($curl, CURLOPT_HEADER, false);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $json_event);
 
 		$json_response = curl_exec($curl);
 
-		$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
 		curl_close($curl);
-
-		$response = json_decode($json_response, true);
-		var_dump($response);
 	}
 }
