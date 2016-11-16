@@ -21,3 +21,7 @@ Route::group(['prefix' => 'events'], function () {
 	Route::get('/{event_id}', 'EventsController@detail')->where('event_id', '[0-9]+');
 	Route::post('/addEvent', 'EventsController@addEvent');
 });
+
+Route::group(['prefix' => 'user'], function () {
+	Route::get('/{user_id}/profile', 'UserController@profile')->where('user_id', '[0-9]+');
+});
