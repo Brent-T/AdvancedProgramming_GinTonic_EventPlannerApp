@@ -32,7 +32,10 @@
 						<a class="nav-link" href="{{ url('/events') }}">Events </a>
 					</li>
 				</ul>
-
+				<ul class="nav navbar-nav float-xs-right">
+					<a href="{{ url('/user/1/profile') }}" class="btn btn-outline-success"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+					<a href="#" class="btn btn-outline-danger">Sign out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+				</ul>
 			</div>
 		</nav>
 
@@ -42,12 +45,12 @@
 
 
 		<footer class="text-muted">
-		  <div class="container">
+			<div class="container">
 			<p class="float-xs-right">
-			  <a href="#">Back to top</a>
+				<a href="#">Back to top</a>
 			</p>
 			<p>&copy; Team Gin Tonic | Advanced Programming | 2016 - 2017</p>
-		  </div>
+			</div>
 		</footer>
 		
 	</div>

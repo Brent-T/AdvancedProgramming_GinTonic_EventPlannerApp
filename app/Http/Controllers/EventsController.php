@@ -30,12 +30,12 @@ class EventsController extends Controller
     public function addEvent(Request $request) {
 		$this->validate($request, [
 			'name' => 'required',
-			'description' => 'required',
-			'location' => 'required',
-			'date_start' => 'required',
-			'time_start' => 'required',
-			'date_end' => 'required',
-			'time_end' => 'required'
+			'description' => '',
+			'location' => '',
+			'date_start' => '',
+			'time_start' => '',
+			'date_end' => '',
+			'time_end' => ''
 		]);
 
 		Event::AddEvent(new Event(

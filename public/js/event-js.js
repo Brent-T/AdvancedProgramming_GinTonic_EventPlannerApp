@@ -15,8 +15,11 @@ $(document).ready(function(){
 
 
 	// hide form on load
-	$('#jq-toggle').hide();
-	console.log("executed");
+	if ($( "#toggle-init" ).val() == '') {
+			$('#jq-toggle').hide();
+		}
+	// $('#jq-toggle').hide();
+	// console.log("executed");
 
 
 	// slide down if title is focussed
