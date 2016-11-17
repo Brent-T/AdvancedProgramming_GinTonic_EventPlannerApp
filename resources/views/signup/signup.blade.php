@@ -14,7 +14,7 @@
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('/bower_components/font-awesome/css/font-awesome.min.css') }}" />
-		<link rel="stylesheet" href="{{ asset('/css/signin.css') }}" />
+		<link rel="stylesheet" href="{{ asset('/css/signup.css') }}" />
 	</head>
 
 	<body>
@@ -23,22 +23,24 @@
 
 			{!! Form::open(['url' => '', 'method' => 'POST', 'class' => 'form-signin']) !!}
 			@include('shared.errors')
-				<h2 class="form-signin-heading">Please sign in</h2>
+				<h2 class="form-signin-heading">Please sign up</h2>
 				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-						{!! Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => 'Firstname']) !!}
+						{!! Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => 'Firstname', 'required']) !!}
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-						{!! Form::text('surname', '', ['class' => 'form-control', 'placeholder' => 'Surname']) !!}
+						{!! Form::text('surname', '', ['class' => 'form-control', 'placeholder' => 'Surname', 'required']) !!}
 				</div>
-				{!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'Email address', 'required', 'autofocus']) !!}
-				{!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password', 'required']) !!}
-				 <div class="checkbox">
-					<label>
-						{!! Form::checkbox('remember me', 'remember-me') !!} Remember me
-					</label>
+				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+						{!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'Email address', 'required']) !!}
 				</div>
-				{!! Form::submit('Sign in', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
-				<p>no account? Sign up <a href="{{ url('/singup') }}">here</a></p>
+				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
+						{!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password', 'required']) !!}
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
+						{!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password', 'required']) !!}
+				</div>
+				{!! Form::submit('Sign up', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
+				<p>already have an account? Sign in <a href="{{ url('/login') }}">here</a></p>
 			{!! csrf_field() !!}
 			{!! Form::close() !!}
 
