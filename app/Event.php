@@ -11,7 +11,7 @@ class Event extends Model
 
     // Properties of Event
     public $name;
-	public $description;			// PROPERTIES SHOULD BE PRIVATE WITH GETTERS
+	public $description;
 	public $location;
 	public $datetime_start;
 	public $datetime_end;
@@ -26,13 +26,17 @@ class Event extends Model
 		$this->id = $id;
 	}
 
-	// Return all events found by webservice
+	/**
+	 *  Return all events found by webservice
+	 */
 	public static function GetAllEvents() {
 		$events = json_decode(file_get_contents(self::$url . '/events'), TRUE);
 		return self::convertToEventList($events);
 	}
 
-	// Always returns an arrays of events
+	/**
+	 *  Convert json array to array of Event array
+	 */
 	private static function convertToEventList($data) {
 		$events = array();
 		foreach ($data as $event) {
@@ -48,15 +52,18 @@ class Event extends Model
 		return $events;
 	}
 
-
-	// Adds an event to the database
+	/**
+	 *  Add event using the web service
+	 */
 	public static function AddEvent($event) {
 
 		$json_event = self::createPostFields($event);
 		self::pushEventToWebservice($json_event);
 	}
 
-	// creating json format
+	/**
+	 *  Convert Event object to post field string
+	 */
 	private static function createPostFields($event) {
 		$json = 
 			'name=' 
@@ -73,7 +80,11 @@ class Event extends Model
 
 	}
 
-	// SRC: http://stackoverflow.com/questions/15834164/sending-data-to-a-webservice-using-post
+	/**
+	 *  Push event (post field string) to web service
+	 * 
+	 *  SRC: http://stackoverflow.com/questions/15834164/sending-data-to-a-webservice-using-post
+	 */
 	private static function pushEventToWebservice($json_event) {
 		$curl = curl_init(self::$url . '/addevent');
 		curl_setopt($curl, CURLOPT_HEADER, false);
