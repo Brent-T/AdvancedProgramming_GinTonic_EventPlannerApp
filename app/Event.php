@@ -48,12 +48,15 @@ class Event extends Model
 		return $events;
 	}
 
+
+	// Adds an event to the database
 	public static function AddEvent($event) {
 
 		$json_event = self::createPostFields($event);
 		self::pushEventToWebservice($json_event);
 	}
 
+	// creating json format
 	private static function createPostFields($event) {
 		$json = 
 			'name=' 

@@ -15,9 +15,6 @@
 		<link rel="stylesheet" href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('/bower_components/font-awesome/css/font-awesome.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('/css/signin.css') }}" />
-
-		<!-- Custom styles for this template -->
-		<!-- <link href="signin.css" rel="stylesheet"> -->
 	</head>
 
 	<body>
@@ -27,6 +24,12 @@
 			{!! Form::open(['url' => '', 'method' => 'POST', 'class' => 'form-signin']) !!}
 			@include('shared.errors')
 				<h2 class="form-signin-heading">Please sign in</h2>
+				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
+						{!! Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => 'Firstname']) !!}
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
+						{!! Form::text('surname', '', ['class' => 'form-control', 'placeholder' => 'Surname']) !!}
+				</div>
 				{!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'Email address', 'required', 'autofocus']) !!}
 				{!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password', 'required']) !!}
 				 <div class="checkbox">
