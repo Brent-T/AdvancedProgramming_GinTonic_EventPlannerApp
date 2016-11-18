@@ -14,7 +14,7 @@
 		<div class="col-xs-12 col-sm-3 col-md-3 form-group no-padding-left">
 			<div class="card card-block">
 				<div class="hovereffect">
-					<img class="img-responsive" src="{{ asset('/img/profiletest.jpg') }}" alt="">
+					<img class="img-responsive" src="{{ asset('/img/defaultprofilepicture.jpg') }}" alt="">
 					<div class="overlay">
 						<h2>Profile Picture</h2>
 						<p>
