@@ -13,3 +13,42 @@ body {
 .custom-navbar-button {
 	color: #d9534f !important;
 }
+
+.no-padding {
+	padding: 0;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.no-padding-right {
+	padding-right: 0;
+}
+
+.no-padding-left {
+	padding-left: 0;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.hide {
+	display: none;
+}
+
+.label-as-link {
+	color: white;
+}
+
+.label-as-link:hover {
+	text-decoration: underline;
+}
+
+
+
+
+#align-with-picture {
+	padding-bottom: 3.5%;
+}

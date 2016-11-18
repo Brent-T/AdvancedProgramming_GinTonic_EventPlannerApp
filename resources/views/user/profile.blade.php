@@ -1,16 +1,74 @@
 @extends('shared.layout')
 
+@section('CSS')
+<link rel="stylesheet" href="{{ asset('/css/thumbnail-hover.css') }}" />
+@endsection
+
 @section('Content')
 <h1>Profile: firstname surname</h1>
 <p>Here you can change your profile data</p>
 <div class="container">
+
+
+	<div class="container no-padding no-margin">
+		<div class="col-xs-12 col-sm-3 col-md-3 form-group no-padding-left">
+			<div class="card card-block">
+				<div class="hovereffect">
+					<img class="img-responsive" src="{{ asset('/img/profiletest.jpg') }}" alt="">
+					<div class="overlay">
+						<h2>Profile Picture</h2>
+						<p><!-- <a href="">CHANGE</a> -->
+							{!! Form::open(['url' => '/user/updateprofilepicture', 'method' => 'POST', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
+								<a href="#" onclick="triggerFileUpload()">CHANGE</a>
+								{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();']) !!}
+
+								<!-- <label class="label-as-link">{!! Form::file('profile_picture', ['class' => 'form-control hide file_trigger']) !!}CHANGE</label> -->
+							{!! csrf_field() !!}
+							{!! Form::close() !!}
+						</p> 
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-9 col-md-9 form-group no-padding-right">
+			<div class="card card-block" id="align-with-picture">
+				{!! Form::open(['url' => '/user/updatename', 'method' => 'POST', 'class' => 'form']) !!}
+				@include('shared.errors')
+				<div class="container">
+					<div class="row">
+							<h4 class="card-title">Name</h4>
+							<div class="col-xs-12 col-sm-6 col-md-6 form-group">
+									{!! Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => 'Firstname']) !!}
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6 form-group">
+									{!! Form::text('surname', '', ['class' => 'form-control', 'placeholder' => 'Surname']) !!}
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+								{!! Form::submit('Update name', ['class' => 'btn btn-outline-primary float-xs-right']) !!}
+						</div>
+					</div>
+				</div>
+				{!! csrf_field() !!}
+				{!! Form::close() !!}
+			</div>
+		</div>
+
+	</div>
+
+<!-- 	<div class="card card-block">
+		{!! Form::open(['url' => '/user/updatename', 'method' => 'POST', 'class' => 'form']) !!}
+		@include('shared.errors')
+		<div class="container">
+			<div class="col-xs-12 col-sm-4 col-md-4 form-group"></div>
+		</div>
+	</div> -->
+
 
 	<div class="card card-block">
 		{!! Form::open(['url' => '/user/updatename', 'method' => 'POST', 'class' => 'form']) !!}
 		@include('shared.errors')
 		<div class="container">
 			<div class="row">
-				
 					<h4 class="card-title">Name</h4>
 					<div class="col-xs-12 col-sm-6 col-md-6 form-group">
 							{!! Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => 'Firstname']) !!}
@@ -78,4 +136,8 @@
 		{!! Form::close() !!}
 	</div>
 </div>
+@endsection
+
+@section('JS')
+<script src="{{ @url('/js/profile-js.js') }}"></script>
 @endsection

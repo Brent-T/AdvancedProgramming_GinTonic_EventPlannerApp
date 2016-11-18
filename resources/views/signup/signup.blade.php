@@ -41,6 +41,7 @@
 				</div>
 				{!! Form::submit('Sign up', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
 				<p>already have an account? Sign in <a href="{{ url('/login') }}">here</a></p>
+				
 			{!! csrf_field() !!}
 			{!! Form::close() !!}
 
