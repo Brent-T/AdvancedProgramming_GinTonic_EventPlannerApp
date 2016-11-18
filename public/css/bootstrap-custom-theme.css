@@ -60,7 +60,21 @@ body {
     z-index: 10;        
 }​
 
-
-#align-with-picture {
+.custom-align-with-picture_01 {
 	padding-bottom: 3.5%;
+}
+
+.custom-list li{
+	display: inline-block;
+}
+
+
+.invited-thumbnail {
+	height: 52px;
+    margin: -.75rem -1.25rem;
+    width: auto;
+}
+
+.custom-button-group-event-detail {
+	margin-bottom: 7%;
 }

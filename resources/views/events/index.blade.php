@@ -10,12 +10,12 @@
 
 <!-- alerting user to fill in the title first -->
 
-<div id="alert-custom" class="alert alert-info alert-dismissible fade in" role="alert">
+<!-- <div id="alert-custom" class="alert alert-info alert-dismissible fade in" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
   <strong>Heads up!</strong> Fill in the title first.
-</div>
+</div> -->
 
 <div class="container">
 	<div class="row">
@@ -59,7 +59,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6 form-group">
-					{!! Form::submit('Add event', ['class' => 'btn btn-primary']) !!}
+					{!! Form::submit('Create event', ['class' => 'btn btn-success']) !!}
 					<button onclick="customSlideUp()" type="button" class="btn btn-outline-danger">Cancel</button>
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 
 @forelse ($events as $event)
 	<div class="card card-block">
-		<h4 class="card-title">{{ $event->name }} - {{ $event->id }}</h4>
+		<h4 class="card-title">{{ $event->name }}</h4>
 		<p class="card-text"><i class="fa fa-info-circle" aria-hidden="true"></i> {{ $event->description }}</p>
 		<p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $event->location }}</p>
 		<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Start: {{ $event->datetime_start }}</p>

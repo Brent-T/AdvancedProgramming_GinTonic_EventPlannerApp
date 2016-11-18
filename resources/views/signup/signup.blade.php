@@ -37,7 +37,7 @@
 						{!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password', 'required']) !!}
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-						{!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password', 'required']) !!}
+						{!! Form::password('confirm_password',['class' => 'form-control', 'placeholder' => 'Confirm password', 'type' => 'password', 'required']) !!}
 				</div>
 				{!! Form::submit('Sign up', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
 				<p>already have an account? Sign in <a href="{{ url('/login') }}">here</a></p>

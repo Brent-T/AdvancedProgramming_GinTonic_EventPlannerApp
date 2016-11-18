@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-9 col-md-9 form-group no-padding-right">
-			<div class="card card-block" id="align-with-picture">
+			<div class="card card-block" style="padding-bottom: 3.5%;">
 				{!! Form::open(['url' => '/user/updatename', 'method' => 'POST', 'class' => 'form']) !!}
 				@include('shared.errors')
 				<div class="container">
