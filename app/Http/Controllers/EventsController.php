@@ -21,7 +21,8 @@ class EventsController extends Controller
 	 *  Detail page of an event by id
 	 */
     public function detail($id) {
-    	return view('events.detail', ['id' => $id]);
+    	$event = Event::GetEventById($id);
+    	return view('events.detail', ['event' => $event]);
     }
 
     /**

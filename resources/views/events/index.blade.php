@@ -72,11 +72,11 @@
 @forelse ($events as $event)
 	<div class="card card-block">
 		<h4 class="card-title">{{ $event->name }} - {{ $event->id }}</h4>
-		<p class="card-text">{{ $event->description }}</p>
-		<p class="card-text">{{ $event->location }}</p>
-		<p class="card-text">Start: {{ $event->datetime_start }}</p>
-		<p class="card-text">End: {{ $event->datetime_end }}</p>        
-		<a href="./events/{{ $event->id }}" class="card-link">Discover this event</a>
+		<p class="card-text"><i class="fa fa-info-circle" aria-hidden="true"></i> {{ $event->description }}</p>
+		<p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $event->location }}</p>
+		<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Start: {{ $event->datetime_start }}</p>
+		<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> End: {{ $event->datetime_end }}</p>        
+		<a href="/events/{{ $event->id }}" class="card-link">Discover this event</a>
 	</div>
 @empty
 	<div class="alert alert-info" role="alert">

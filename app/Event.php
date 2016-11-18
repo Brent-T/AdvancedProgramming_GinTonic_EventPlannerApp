@@ -35,6 +35,31 @@ class Event extends Model
 	}
 
 	/**
+	 *  Return all events found by webservice
+	 */
+	public static function GetEventById($id) {
+		$event = json_decode(file_get_contents(self::$url . '/event?id=' .urlencode($id) ), TRUE);
+		return self::convertToEventObject($event);
+	}
+
+
+	/**
+	 *  Convert json array to Event object
+	 */
+	private static function convertToEventObject($data) {
+		$event = 
+		new Event(
+				$data['name'], 
+				$data['description'], 
+				$data['location'], 
+				$data['startDate'],
+				$data['endDate'],
+				$data['id']
+			);
+		return $event;
+	}
+
+	/**
 	 *  Convert json array to array of Event array
 	 */
 	private static function convertToEventList($data) {
