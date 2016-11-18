@@ -20,7 +20,7 @@
 						<p><!-- <a href="">CHANGE</a> -->
 							{!! Form::open(['url' => '/user/updateprofilepicture', 'method' => 'POST', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
 								<a href="#" onclick="triggerFileUpload()">CHANGE</a>
-								{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();']) !!}
+								{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();', 'accept' => '.jpg']) !!}
 
 								<!-- <label class="label-as-link">{!! Form::file('profile_picture', ['class' => 'form-control hide file_trigger']) !!}CHANGE</label> -->
 							{!! csrf_field() !!}
