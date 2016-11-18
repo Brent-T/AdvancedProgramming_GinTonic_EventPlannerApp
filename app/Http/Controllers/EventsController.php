@@ -50,4 +50,27 @@ class EventsController extends Controller
 
 		return redirect()->action('EventsController@index');
 	}
+
+
+	/**
+	 *  Route for handling post of adding suggested date to event
+	 */
+    public function addSuggestedDateToEvent(Request $request) {
+		$this->validate($request, [
+			'date_start' => 'required',
+			'time_start' => 'required',
+			'date_end' => 'required',
+			'time_end' => 'required'
+		]);
+	}
+
+
+	/**
+	 *  Route for handling post of adding suggested location to event
+	 */
+    public function addSuggestedLocationToEvent(Request $request) {
+		$this->validate($request, [
+			'location' => 'required'
+		]);
+	}
 }

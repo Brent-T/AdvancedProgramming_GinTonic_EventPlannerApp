@@ -17,6 +17,7 @@
 		<p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Till {{$event->datetime_end}}</p>
 	</div>
 </div>
+@include('shared.errors')
 <div class="float-xs-right">
 	<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestdate"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> suggest date</button>
 	<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestlocation"><i class="fa fa-map-marker" aria-hidden="true"></i> suggest location</button>
@@ -25,7 +26,7 @@
 <!-- Modal Suggest Date -->
 <div class="modal fade" id="suggestdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-  	{!! Form::open(['url' => '/events/1/suggestdate', 'method' => 'POST', 'class' => 'form']) !!}
+  	{!! Form::open(['url' => '/events/' . $event->id . '/suggestdate', 'method' => 'POST', 'class' => 'form']) !!}
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -68,7 +69,7 @@
 <!-- Modal Suggest location -->
 <div class="modal fade" id="suggestlocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-  	{!! Form::open(['url' => '/events/1/suggestlocation', 'method' => 'POST', 'class' => 'form']) !!}
+  	{!! Form::open(['url' => '/events/' . $event->id . '/suggestlocation', 'method' => 'POST', 'class' => 'form']) !!}
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

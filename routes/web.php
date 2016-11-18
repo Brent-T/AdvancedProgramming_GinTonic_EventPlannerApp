@@ -24,6 +24,12 @@ Route::group(['prefix' => 'events'], function () {
 	Route::get('/overview', 'EventsController@index');
 	Route::get('/{event_id}', 'EventsController@detail')->where('event_id', '[0-9]+');
 	Route::post('/addEvent', 'EventsController@addEvent');
+
+	Route::group(['prefix' => '/{event_id}'], function () {
+		Route::post('/suggestdate', 'EventsController@addSuggestedDateToEvent')->where('event_id', '[0-9]+');
+		Route::post('/suggestlocation', 'EventsController@addSuggestedLocationToEvent')->where('event_id', '[0-9]+');
+	});
+
 });
 
 Route::group(['prefix' => 'user'], function () {
