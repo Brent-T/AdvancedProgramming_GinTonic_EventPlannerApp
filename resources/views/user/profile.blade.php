@@ -17,14 +17,12 @@
 					<img class="img-responsive" src="{{ asset('/img/profiletest.jpg') }}" alt="">
 					<div class="overlay">
 						<h2>Profile Picture</h2>
-						<p><!-- <a href="">CHANGE</a> -->
-							{!! Form::open(['url' => '/user/updateprofilepicture', 'method' => 'POST', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
-								<a href="#" onclick="triggerFileUpload()">CHANGE</a>
-								{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();', 'accept' => '.jpg']) !!}
-
-								<!-- <label class="label-as-link">{!! Form::file('profile_picture', ['class' => 'form-control hide file_trigger']) !!}CHANGE</label> -->
-							{!! csrf_field() !!}
-							{!! Form::close() !!}
+						<p>
+						{!! Form::open(['url' => '/user/updateprofilepicture', 'method' => 'POST', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
+							<a href="#" onclick="triggerFileUpload()">CHANGE</a>
+							{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();', 'accept' => '.jpg']) !!}
+						{!! csrf_field() !!}
+						{!! Form::close() !!}
 						</p> 
 					</div>
 				</div>
@@ -53,36 +51,6 @@
 			</div>
 		</div>
 
-	</div>
-
-<!-- 	<div class="card card-block">
-		{!! Form::open(['url' => '/user/updatename', 'method' => 'POST', 'class' => 'form']) !!}
-		@include('shared.errors')
-		<div class="container">
-			<div class="col-xs-12 col-sm-4 col-md-4 form-group"></div>
-		</div>
-	</div> -->
-
-
-	<div class="card card-block">
-		{!! Form::open(['url' => '/user/updatename', 'method' => 'POST', 'class' => 'form']) !!}
-		@include('shared.errors')
-		<div class="container">
-			<div class="row">
-					<h4 class="card-title">Name</h4>
-					<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-							{!! Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => 'Firstname']) !!}
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-							{!! Form::text('surname', '', ['class' => 'form-control', 'placeholder' => 'Surname']) !!}
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 form-group">
-						{!! Form::submit('Update name', ['class' => 'btn btn-outline-primary float-xs-right']) !!}
-				</div>
-			</div>
-		</div>
-		{!! csrf_field() !!}
-		{!! Form::close() !!}
 	</div>
 
 	<div class="card card-block">

@@ -44,7 +44,7 @@
 		</div>
 
 
-		<footer class="text-muted">
+		<footer class="text-muted custom-footer">
 			<div class="container">
 			<p class="float-xs-right">
 				<a href="#">Back to top</a>
