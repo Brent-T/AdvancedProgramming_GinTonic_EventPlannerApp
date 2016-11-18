@@ -59,6 +59,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         {!! Form::submit('Suggest date', ['class' => 'btn btn-primary']) !!}
+        {!! Form::hidden('event_id', $event->id) !!}
       </div>
   	{!! csrf_field() !!}
 	{!! Form::close() !!}
@@ -88,6 +89,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         {!! Form::submit('Suggest date', ['class' => 'btn btn-primary']) !!}
+        {!! Form::hidden('event_id', $event->id) !!}
       </div>
   	{!! csrf_field() !!}
 	{!! Form::close() !!}

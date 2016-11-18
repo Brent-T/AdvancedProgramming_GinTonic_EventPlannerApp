@@ -62,6 +62,9 @@ class EventsController extends Controller
 			'date_end' => 'required',
 			'time_end' => 'required'
 		]);
+
+
+		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 	}
 
 
@@ -72,5 +75,7 @@ class EventsController extends Controller
 		$this->validate($request, [
 			'location' => 'required'
 		]);
+
+		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 	}
 }
