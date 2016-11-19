@@ -16,6 +16,33 @@
 		<p><i class="fa fa-map-marker" aria-hidden="true"></i> {{$event->location}}</p>
 		<p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> From {{$event->datetime_start}}</p>
 		<p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Till {{$event->datetime_end}}</p>
+		<div id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="card">
+				<div class="card-header" role="tab" id="headingOne">
+					<h5 class="mb-0">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Suggested Locations
+						</a>
+					</h5>
+				</div>
+				<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+					<div class="card-block">
+						<table class="table table-locations">
+							<tbody>
+								<tr>
+									<td>Odisee Technologiecampus Gent</td>
+									<td><progress class="progress progress-success" value="1" max="10"></progress></td>
+									<td class="text-xs-center">
+										<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+										<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

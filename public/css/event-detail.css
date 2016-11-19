@@ -21,7 +21,7 @@
 }
 
 .table-requirements tr td:last-child {
-	width: 10%;
+	width: 70%;
 }
 
 .invited-thumbnail {
@@ -35,4 +35,19 @@
 
 .vcenter-name {
     padding-top: 3.5% !important;
+}
+
+
+.table-locations tr td:first-child {
+	width: 30%;
+}
+
+.table-locations tr td:nth-child(2) {
+	width: 50%;
+    padding-top: 1.7% !important;
+    padding: 0;
+}
+
+.table-locations tr td:last-child {
+	width: 20%;
 }
