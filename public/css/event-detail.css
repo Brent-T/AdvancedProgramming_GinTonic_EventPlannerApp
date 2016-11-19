@@ -38,6 +38,10 @@
 }
 
 
+.table-locations td {
+	border: none !important;
+}
+
 .table-locations tr td:first-child {
 	width: 30%;
 }
@@ -49,5 +53,23 @@
 }
 
 .table-locations tr td:last-child {
+	width: 20%;
+}
+
+.table-dates td {
+	border: none !important;
+}
+
+.table-dates tr td:first-child {
+	width: 40%;
+}
+
+.table-dates tr td:nth-child(2) {
+	width: 40%;
+    padding-top: 1.7% !important;
+    padding: 0;
+}
+
+.table-dates tr td:last-child {
 	width: 20%;
 }
