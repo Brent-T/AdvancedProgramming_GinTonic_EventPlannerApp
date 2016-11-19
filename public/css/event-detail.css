@@ -1,0 +1,23 @@
+.table-suggestions tr td:first-child {
+	width: 20%;
+}
+
+.table-suggestions tr td:nth-child(2) {
+	width: 5%;
+}
+
+.table-suggestions tr td:nth-child(3) {
+	width: 60%;
+}
+
+.table-suggestions tr td:last-child {
+	width: 15%;
+}
+
+/*.table-suggestions tr progress {
+	width: 90%;
+}
+
+.table-suggestions tr div.progress-numbers {
+	width: 10%;
+}*/

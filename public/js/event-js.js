@@ -35,6 +35,10 @@ $(document).ready(function(){
 	// 		$('#jq-toggle').slideUp();
 	// 	}
 	// });
+
+	$(function () {
+	  $('[data-toggle="popover"]').popover()
+	})
 	
 });
 

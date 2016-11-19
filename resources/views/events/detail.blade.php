@@ -3,6 +3,7 @@
 
 @section('CSS')
 <link rel="stylesheet" href="{{ asset('/css/calendar-custom.css') }}" />
+<link rel="stylesheet" href="{{ asset('/css/event-detail.css') }}" />
 @endsection
 
 
@@ -103,45 +104,123 @@
 	</div>
 </div>
 
-<div class="container">
+<!-- <div class="container"> -->
 
 	<div class="row">
-		<div class="col-xs-12 col-sm-4 col-md-4 ">
+		<div class="col-xs-12 col-sm-12 col-md-4 ">
 			<h3>Invitees</h3>
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action">
 					<img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}">
-					<div class="float-xs-right">Brent Timmermans</div>
+					<div class="float-xs-right"><p>Brent Timmermans</p></div>
 				</a>
 				<a href="#" class="list-group-item list-group-item-action">
 					<img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}">
 					<div class="float-xs-right">
-						<p>Dieter Deschuiteneer <i class="fa fa-times" aria-hidden="true"></i></p>
+						<p>Dieter Deschuiteneer</p>
 					</div>
 				</a>
 				<a href="#" class="list-group-item list-group-item-action">
 					<img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}">
 					<div class="float-xs-right">
-						<p>Alessio De Groote <i class="fa fa-times" aria-hidden="true"></i></p>
+						<p>Alessio De Groote</p>
 					</div>
 				</a>
 				<a href="#" class="list-group-item list-group-item-action">
 					<img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}">
 					<div class="float-xs-right">
-						<p>Timothy Dewolf <i class="fa fa-times" aria-hidden="true"></i></p>
+						<p>Timothy Dewolf</p>
 					</div>
 				</a>
 				<a href="#" class="list-group-item list-group-item-action">
 					<img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}">
 					<div class="float-xs-right">
-						<p>Jonas Reyniers <i class="fa fa-times" aria-hidden="true"></i></p>
+						<p>Jonas Reyniers</p>
 					</div>
 				</a>
 			</div>
 		
 		</div>
-		<div class="col-xs-12 col-sm-8 col-md-8">
+		<div class="col-xs-12 col-sm-12 col-md-8">
 			<h3>Requirements</h3>
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>Gender Equal food</td>
+						<td>dafuq is this even?</td>
+					</tr>
+					<tr>
+						<td>Apache Helicopters</td>
+						<td>CHOP CHOP MOFO'S</td>
+					</tr>
+					<tr>
+						<td>Trebuchets</td>
+						<td>90 kg flaming projectiles that can be launched at 300 meter distance and accuratly hit target</td>
+					</tr>
+					<tr>
+						<td>Crusaders</td>
+						<td>Deus Vult</td>
+					</tr>
+					<tr>
+						<td>Dank Memes</td>
+						<td>Thomas the Dank engine</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class=row>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<h3>Suggestions</h3>
+			<table class="table table-suggestions">
+				<tbody>
+					<tr>
+						<td>Gender Equal food</td>
+						<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="dafuq is this even?">info</button></td>
+						<td><progress class="progress progress-success" value="5" max="10"></progress></td>
+						<td class="text-xs-center">
+							<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+							<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+						</td>
+					</tr>
+					<tr>
+						<td>Apache Helicopters</td>
+						<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="CHOP CHOP MOFO'S">info</button></td>
+						<td><progress class="progress progress-success" value="7" max="10"></progress></td>
+						<td class="text-xs-center">
+							<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+							<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+						</td>
+					</tr>
+					<tr>
+						<td>Trebuchets</td>
+						<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="90 kg flaming projectiles that can be launched at 300 meter distance and accuratly hit target">info</button></td>
+						<td><progress class="progress progress-success" value="1" max="10"></progress></td>
+						<td class="text-xs-center">
+							<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+							<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+						</td>
+					</tr>
+					<tr>
+						<td>Crusaders</td>
+						<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Deus Vult">info</button></td>
+						<td><progress class="progress progress-success" value="3" max="10"></progress></td>
+						<td class="text-xs-center">
+							<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+							<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+						</td>
+					</tr>
+					<tr>
+						<td>Dank Memes</td>
+						<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Thomas the Dank engine">info</button></td>
+						<td><progress class="progress progress-success" value="9" max="10"></progress></td>
+						<td class="text-xs-center">
+							<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+							<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<!-- <h2>Invitees</h2>
@@ -161,7 +240,7 @@
 		<strong>November</strong>
 		<span>15</span>
 	</time> -->
-</div>
+<!-- </div> -->
 
 
 
