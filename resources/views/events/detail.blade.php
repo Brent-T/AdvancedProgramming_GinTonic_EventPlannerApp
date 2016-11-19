@@ -109,7 +109,36 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4 ">
 			<h3>Invitees</h3>
-			<div class="list-group">
+			<table class="table table-invitees">
+				<tbody>
+					<tr>
+						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
+						<td class="text-xs-left vcenter-name">Brent Timmermans</td>
+						<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					</tr>
+					<tr>
+						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
+						<td class="text-xs-left vcenter-name">Alessio De Groote</td>
+						<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					</tr>
+					<tr>
+						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
+						<td class="text-xs-left vcenter-name">Dieter Deschuiteneer</td>
+						<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					</tr>
+					<tr>
+						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
+						<td class="text-xs-left vcenter-name">Jonas Reyniers</td>
+						<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					</tr>
+					<tr>
+						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
+						<td class="text-xs-left vcenter-name">Timothy Dewolf</td>
+						<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- <div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action">
 					<img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}">
 					<div class="float-xs-right"><p>Brent Timmermans</p></div>
@@ -138,12 +167,12 @@
 						<p>Jonas Reyniers</p>
 					</div>
 				</a>
-			</div>
+			</div> -->
 		
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-8">
 			<h3>Requirements</h3>
-			<table class="table table-bordered">
+			<table class="table table-requirements">
 				<tbody>
 					<tr>
 						<td>Gender Equal food</td>

@@ -14,10 +14,23 @@
 	width: 15%;
 }
 
-/*.table-suggestions tr progress {
-	width: 90%;
+.table-requirements tr td:first-child {
+	width: 30%;
 }
 
-.table-suggestions tr div.progress-numbers {
+.table-requirements tr td:last-child {
 	width: 10%;
-}*/
+}
+
+.invited-thumbnail {
+	height: 50px;
+    width: auto;
+}
+
+.table-invitees td {
+	padding: 0;
+}
+
+.vcenter-name {
+    padding-top: 3.5% !important;
+}
