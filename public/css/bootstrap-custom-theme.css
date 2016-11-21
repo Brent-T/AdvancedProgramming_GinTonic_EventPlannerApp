@@ -2,6 +2,37 @@ body {
 
 }
 
+/* Navbar */
+
+.navbar {
+	background-color: #a62e38;
+}
+
+.navbar-brand {
+	margin-top: 0.3%;
+}
+
+.navbar-toggler {
+	border-color: #a08056 !important;
+}
+
+.navbar a {
+	color: white !important;
+}
+
+.custom-nav-link {
+	transition: 0.3s ease;
+	text-decoration: none;
+	border-top: 4px solid #a62e38;
+	border-bottom: 4px solid #a62e38;
+	margin: 0 7px;
+}
+
+.custom-nav-link:hover {
+	border-top: 4px solid #ffffff;
+	border-bottom: 4px solid #ffffff;
+}
+
 .content {
 	margin-top: 30px;
 }
@@ -70,4 +101,14 @@ body {
 
 .custom-button-group-event-detail {
 	margin-bottom: 7%;
+}
+.custom-footer a {
+	color: #a08056;
+}
+.card-link {
+	color: #a08056;
+}
+.card-link:hover {
+	color: #a08056;
+	text-decoration: underline;
 }

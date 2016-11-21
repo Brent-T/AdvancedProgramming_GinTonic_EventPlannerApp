@@ -27,3 +27,10 @@ body {
 .form-signin .form-control:focus {
   z-index: 2;
 }
+.btn-primary {
+  background-color: #a62e38;
+  border-color: #D00;
+}
+.btn-primary:hover {
+  background-color: #A12D36;
+}

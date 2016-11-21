@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<nav class="navbar navbar-dark bg-inverse">
+		<nav class="navbar navbar-light">
 
 			<button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
 
@@ -25,16 +25,20 @@
 				<a class="navbar-brand" href="{{ url('/home') }}">Event Planner</a>
 
 				<ul class="nav navbar-nav">
-					<li class="nav-item">
+					<li class="nav-item custom-nav-link">
 						<a class="nav-link" href="{{ url('/home') }}">Home </a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item custom-nav-link">
 						<a class="nav-link" href="{{ url('/events') }}">Events </a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav float-xs-right">
-					<a href="{{ url('/user/1/profile') }}" class="btn btn-outline-success"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-					<a href="#" class="btn btn-outline-danger">Sign out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+					<li class="nav-item">
+						<a href="{{ url('/user/1/profile') }}" class="nav-link custom-nav-link"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link custom-nav-link">Sign out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+					</li>
 				</ul>
 			</div>
 		</nav>
