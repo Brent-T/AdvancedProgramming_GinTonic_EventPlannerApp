@@ -1,3 +1,11 @@
+#accordion a {
+	color: #a08056;
+}
+
+.progress[value]::-webkit-progress-value {
+	background-color: #71934E;
+}
+
 .table-suggestions tr td:first-child {
 	width: 20%;
 }

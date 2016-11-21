@@ -32,7 +32,7 @@
 							<tbody>
 								<tr>
 									<td>Odisee Technologiecampus Gent</td>
-									<td><progress class="progress progress-success" value="1" max="10"></progress></td>
+									<td><progress class="progress progress-danger" value="1" max="10"></progress></td>
 									<td class="text-xs-center">
 										<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
 										<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
