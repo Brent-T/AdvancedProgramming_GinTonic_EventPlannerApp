@@ -94,7 +94,7 @@ class Event extends Model
 			'name=' 
 			. $event->name 
 			. '&description=' 
-			. $event->description 
+			. nl2br($event->description)
 			. '&location=' 
 			. $event->location 
 			. '&startDate=' 
