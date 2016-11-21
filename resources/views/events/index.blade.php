@@ -76,7 +76,7 @@
 		<p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $event->location }}</p>
 		<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Start: {{ $event->datetime_start }}</p>
 		<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> End: {{ $event->datetime_end }}</p>        
-		<a href="/events/{{ $event->id }}" class="card-link">Discover this event</a>
+		<a href="./events/{{ $event->id }}" class="card-link">Discover this event</a>
 	</div>
 @empty
 	<div class="alert alert-info" role="alert">
