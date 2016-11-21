@@ -22,7 +22,7 @@
 				<div class="card-header" role="tab" id="headingOne">
 					<h5 class="mb-0">
 						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-							<i class="fa fa-map-marker" aria-hidden="true"></i> Suggested Locations
+							<i class="fa fa-map-marker" aria-hidden="true"></i> Suggested Locations <span class="tag tag-default tag-pill float-xs-right">2</span>
 						</a>
 					</h5>
 				</div>
@@ -56,7 +56,7 @@
 				<div class="card-header" role="tab" id="headingOne">
 					<h5 class="mb-0">
 						<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-							<i class="fa fa-calendar-check-o" aria-hidden="true"></i> Suggested dates
+							<i class="fa fa-calendar-check-o" aria-hidden="true"></i> Suggested dates<span class="tag tag-default tag-pill float-xs-right">2</span>
 						</a>
 					</h5>
 				</div>
