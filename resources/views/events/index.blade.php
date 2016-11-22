@@ -72,7 +72,7 @@
 @forelse ($events as $event)
 	<div class="card card-block">
 		<h4 class="card-title">{{ $event->name }}</h4>
-		<p class="card-text"><i class="fa fa-info-circle" aria-hidden="true"></i> {{ $event->description }}</p>
+		<p class="card-text"><i class="fa fa-info-circle" aria-hidden="true"></i> {!! $event->description !!}</p>
 		<p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $event->location }}</p>
 		<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Start: {{ $event->datetime_start }}</p>
 		<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> End: {{ $event->datetime_end }}</p>        
