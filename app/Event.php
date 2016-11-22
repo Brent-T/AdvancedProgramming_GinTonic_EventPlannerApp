@@ -100,7 +100,9 @@ class Event extends Model
 			. '&startDate=' 
 			. $event->datetime_start 
 			. '&endDate=' 
-			. $event->datetime_end;
+			. $event->datetime_end
+			. '&userid='
+			. 1;
 		return $json; 
 
 	}
