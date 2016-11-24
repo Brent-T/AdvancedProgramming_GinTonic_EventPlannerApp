@@ -19,6 +19,15 @@ class UserController extends Controller
 
     }
 
+    private static function createPostFields($event) {
+		$json = 
+			'email=' 
+			. $event->name 
+			. '&password=' 
+			. $event->description
+		return $json; 
+	}
+
     public function showRegister() {
     	return view('register.register');
     }
@@ -31,7 +40,7 @@ class UserController extends Controller
 			'password' => 'required'
 		]);
 
-		
+
     }
 
     public function profile($id) {
