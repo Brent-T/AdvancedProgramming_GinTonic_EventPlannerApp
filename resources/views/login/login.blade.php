@@ -35,7 +35,7 @@
 					</label>
 				</div>
 				{!! Form::submit('Sign in', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
-				<p>no account? Sign up <a class="text-danger" href="{{ url('/signup') }}">here</a></p>
+				<p>no account? Sign up <a class="text-danger" href="{{ url('/user/register') }}">here</a></p>
 			{!! csrf_field() !!}
 			{!! Form::close() !!}
 

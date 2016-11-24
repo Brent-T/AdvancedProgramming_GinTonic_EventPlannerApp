@@ -33,5 +33,9 @@ Route::group(['prefix' => 'events'], function () {
 });
 
 Route::group(['prefix' => 'user'], function () {
+	Route::get('/login', 'UserController@showLogin');
+	Route::post('/login', 'UserController@login');
+	Route::get('/register', 'UserController@showRegister');
+	Route::post('/register', 'UserController@register');
 	Route::get('/{user_id}/profile', 'UserController@profile')->where('user_id', '[0-9]+');
 });

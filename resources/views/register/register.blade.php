@@ -33,14 +33,11 @@
 				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 						{!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'Email address', 'required']) !!}
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
+				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 						{!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password', 'required']) !!}
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-						{!! Form::password('confirm_password',['class' => 'form-control', 'placeholder' => 'Confirm password', 'type' => 'password', 'required']) !!}
-				</div>
-				{!! Form::submit('Sign up', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
-				<p>already have an account? Sign in <a class="text-danger" href="{{ url('/login') }}">here</a></p>
+				{!! Form::submit('Register', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
+				<p>already have an account? Sign in <a class="text-danger" href="{{ url('/user/login') }}">here</a></p>
 				
 			{!! csrf_field() !!}
 			{!! Form::close() !!}
