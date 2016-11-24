@@ -24,7 +24,7 @@
 
 		<div class="container">
 
-			{!! Form::open(['url' => '', 'method' => 'POST', 'class' => 'form-signin']) !!}
+			{!! Form::open(['url' => url('/user/login'), 'method' => 'POST', 'class' => 'form-signin']) !!}
 			@include('shared.errors')
 				<h2 class="form-signin-heading">Please sign in</h2>
 				{!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'Email address', 'required', 'autofocus']) !!}

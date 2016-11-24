@@ -11,6 +11,11 @@ class UserController extends Controller
     }
 
     public function login(Request $request) {
+    	$this->validate($request, [
+			'email' => 'required',
+			'password' => 'required'
+		]);
+
 
     }
 
@@ -19,7 +24,14 @@ class UserController extends Controller
     }
 
     public function register(Request $request) {
-    	
+    	$this->validate($request, [
+			'firstname' => 'required',
+			'surname' => 'required',
+			'email' => 'required',
+			'password' => 'required'
+		]);
+
+		
     }
 
     public function profile($id) {

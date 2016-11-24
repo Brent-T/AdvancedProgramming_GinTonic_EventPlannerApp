@@ -21,7 +21,7 @@
 
 		<div class="container">
 
-			{!! Form::open(['url' => '', 'method' => 'POST', 'class' => 'form-signin']) !!}
+			{!! Form::open(['url' => url('/user/register'), 'method' => 'POST', 'class' => 'form-signin']) !!}
 			@include('shared.errors')
 				<h2 class="form-signin-heading">Please sign up</h2>
 				<div class="col-xs-12 col-sm-6 col-md-6 form-group">
