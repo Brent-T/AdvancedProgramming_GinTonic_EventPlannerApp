@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CustomUser;
 
 class UserController extends Controller
 {
@@ -16,7 +17,14 @@ class UserController extends Controller
 			'password' => 'required'
 		]);
 
+    	$check = CustomUser::Login(new CustomUser(
+			$request->email,
+			$request->password
+		));
 
+		var_dump($check);
+		var_dump(crypt($request->password, $request->email));
+		var_dump(crypt($request->password, $request->email));
     }
 
     private static function createPostFields($event) {
@@ -24,7 +32,7 @@ class UserController extends Controller
 			'email=' 
 			. $event->name 
 			. '&password=' 
-			. $event->description
+			. $event->description;
 		return $json; 
 	}
 
@@ -40,7 +48,14 @@ class UserController extends Controller
 			'password' => 'required'
 		]);
 
+    	$check = CustomUser::Register(new CustomUser(
+			$request->email,
+			$request->password,
+			$request->firstname,
+			$request->surname
+		));
 
+		var_dump($check);
     }
 
     public function profile($id) {

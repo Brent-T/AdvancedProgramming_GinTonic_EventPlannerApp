@@ -104,7 +104,6 @@ class Event extends Model
 			. '&userid='
 			. 1;
 		return $json; 
-
 	}
 
 	/**
