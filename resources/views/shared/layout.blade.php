@@ -33,12 +33,21 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav float-xs-right">
+				@if(Session::has('user'))
 					<li class="nav-item">
 						<a href="{{ url('/user/1/profile') }}" class="nav-link custom-nav-link"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link custom-nav-link">Sign out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+						<a href="{{ url('/user/logout') }}" class="nav-link custom-nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
 					</li>
+				@else
+					<li class="nav-item">
+						<a href="{{ url('/user/register') }}" class="nav-link custom-nav-link"><i class="fa fa-user" aria-hidden="true"></i> Register</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('/user/login') }}" class="nav-link custom-nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Login</a>
+					</li>
+				@endif
 				</ul>
 			</div>
 		</nav>

@@ -41,7 +41,7 @@ class CustomUser extends Model
 
         curl_close($curl);
 
-        return $response;
+        return json_decode($response);
     }
 
     private static function createPostFieldsLogin($user) {
@@ -66,7 +66,7 @@ class CustomUser extends Model
 
         curl_close($curl);
 
-        return $response;
+        return json_decode($response);
     }
 
     private static function createPostFieldsRegister($user) {
@@ -78,7 +78,7 @@ class CustomUser extends Model
             . '&email=' 
             . $user->email 
             . '&password=' 
-            . password_hash($user->password, PASSWORD_DEFAULT);
+            . $user->password;
         return $json; 
     }
 }

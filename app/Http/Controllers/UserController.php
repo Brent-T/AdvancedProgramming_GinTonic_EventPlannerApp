@@ -22,9 +22,9 @@ class UserController extends Controller
 			$request->password
 		));
 
-		var_dump($check);
-		var_dump(crypt($request->password, $request->email));
-		var_dump(crypt($request->password, $request->email));
+    	$request->session()->put('user', $check->userId);
+
+		return view('home.index');
     }
 
     private static function createPostFields($event) {
@@ -35,6 +35,12 @@ class UserController extends Controller
 			. $event->description;
 		return $json; 
 	}
+
+	public function logout(Request $request) {
+		$request->session()->flush();
+
+		return view('home.index');
+    }
 
     public function showRegister() {
     	return view('register.register');
