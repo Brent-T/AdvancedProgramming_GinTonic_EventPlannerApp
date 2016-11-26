@@ -5,7 +5,7 @@
 @endsection
 
 @section('Content')
-<h1>Profile: firstname surname</h1>
+<h1>Profile: {{ Session::get('user')->firstname . ' ' . Session::get('user')->surname}}</h1>
 <p>Here you can change your profile data</p>
 <div class="container">
 
@@ -36,10 +36,10 @@
 					<div class="row">
 							<h4 class="card-title">Name</h4>
 							<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-									{!! Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => 'Firstname']) !!}
+									{!! Form::text('firstname', Session::get('user')->firstname, ['class' => 'form-control', 'placeholder' => 'Firstname']) !!}
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-									{!! Form::text('surname', '', ['class' => 'form-control', 'placeholder' => 'Surname']) !!}
+									{!! Form::text('surname', Session::get('user')->surname, ['class' => 'form-control', 'placeholder' => 'Surname']) !!}
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 								{!! Form::submit('Update name', ['class' => 'btn btn-outline-primary float-xs-right']) !!}
@@ -60,7 +60,7 @@
 			<div class="row">
 				<h4 class="card-title">Email address</h4>
 				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
-						{!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+						{!! Form::email('email', Session::get('user')->email, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 					{!! Form::submit('Update email address', ['class' => 'btn btn-outline-primary float-xs-right']) !!}
