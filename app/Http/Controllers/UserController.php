@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function login(Request $request) {
     	$this->validate($request, [
-			'email' => 'required',
+			'email' => 'required|min:5',
 			'password' => 'required'
 		]);
 
@@ -22,9 +22,14 @@ class UserController extends Controller
 			$request->password
 		));
 
-    	$request->session()->put('user', $check->userId);
-
-		return view('home.index');
+		if($check) {
+			$request->session()->put('user', $check->userId);
+			return view('home.index');	
+		}
+		else{
+			$errors = array("Invalid credentials");
+			return view('login.login');
+		}    	
     }
 
     private static function createPostFields($event) {

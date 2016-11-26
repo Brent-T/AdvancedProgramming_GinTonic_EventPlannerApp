@@ -21,7 +21,7 @@
 	</head>
 
 	<body>
-
+		
 		<div class="container">
 
 			{!! Form::open(['url' => url('/user/login'), 'method' => 'POST', 'class' => 'form-signin']) !!}
