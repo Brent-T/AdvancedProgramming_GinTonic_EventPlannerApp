@@ -48,14 +48,20 @@ class UserController extends Controller
 			'password' => 'required'
 		]);
 
-    	$check = CustomUser::Register(new CustomUser(
+    	$user = CustomUser::Register(new CustomUser(
 			$request->email,
 			$request->password,
 			$request->firstname,
 			$request->surname
 		));
 
-		var_dump($check);
+		if($user) {
+			$request->session()->put('user', $user);
+			return redirect()->action('EventsController@index');
+		}
+		else{
+			return view('register.register');
+		}   
     }
 
     public function profile($id) {

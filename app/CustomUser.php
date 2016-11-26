@@ -74,18 +74,14 @@ class CustomUser extends Model
 
     public static function Register($user) {
         $json_user = self::createPostFieldsRegister($user);
+        $response = self::postRegister($json_user);
 
-        $curl = curl_init(self::$url . '/register');
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $json_user);
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-
-        return json_decode($response);
+        if($response) {
+            return self::convertJsonToUser(json_decode($response));  
+        }
+        else {
+            return null;
+        }
     }
 
     private static function createPostFieldsRegister($user) {
@@ -99,5 +95,19 @@ class CustomUser extends Model
             . '&password=' 
             . $user->password;
         return $json; 
+    }
+
+    private static function postRegister($json_user) {
+        $curl = curl_init(self::$url . '/register');
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $json_user);
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        return $response;
     }
 }
