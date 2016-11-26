@@ -10,12 +10,9 @@ class Event extends Model
     private static $url = 'http://localhost:9000'; 
 
     // Properties of Event
-    public $name;
-	public $description;
-	public $location;
-	public $datetime_start;
-	public $datetime_end;
-	public $id;
+    protected $fillable = [
+        'name', 'description', 'location', 'datetime_start', 'datetime_end', 'id'
+    ];
 
 	public function __construct($name, $description, $location, $datetime_start, $datetime_end, $id = '1') {
 		$this->name = $name;

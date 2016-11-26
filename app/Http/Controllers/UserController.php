@@ -13,17 +13,18 @@ class UserController extends Controller
 
     public function login(Request $request) {
     	$this->validate($request, [
-			'email' => 'required|min:5',
+			'email' => 'required',
 			'password' => 'required'
 		]);
 
-    	$check = CustomUser::Login(new CustomUser(
+    	$user = CustomUser::Login(new CustomUser(
 			$request->email,
 			$request->password
 		));
 
-		if($check) {
-			$request->session()->put('user', $check->userId);
+		if($user) {
+			$request->session()->put('user', $user);
+			var_dump($request->session()->get('user'));
 			return view('home.index');	
 		}
 		else{
