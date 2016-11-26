@@ -24,27 +24,15 @@ class UserController extends Controller
 
 		if($user) {
 			$request->session()->put('user', $user);
-			var_dump($request->session()->get('user'));
-			return view('home.index');	
+			return redirect()->action('EventsController@index');
 		}
 		else{
-			$errors = array("Invalid credentials");
 			return view('login.login');
 		}    	
     }
 
-    private static function createPostFields($event) {
-		$json = 
-			'email=' 
-			. $event->name 
-			. '&password=' 
-			. $event->description;
-		return $json; 
-	}
-
 	public function logout(Request $request) {
-		$request->session()->flush();
-
+		$request->session()->forget('user');
 		return view('home.index');
     }
 

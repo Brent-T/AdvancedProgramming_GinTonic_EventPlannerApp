@@ -31,6 +31,11 @@ class Event extends Model
 		return self::convertToEventList($events);
 	}
 
+	public static function GetAllEventsForUser($user_id) {
+		$events = json_decode(file_get_contents(self::$url . '/eventbyuserid?userid=' . $user_id), TRUE);
+		return self::convertToEventList($events);
+	}
+
 	/**
 	 *  Return all events found by webservice
 	 */
@@ -45,7 +50,7 @@ class Event extends Model
 	 */
 	private static function convertToEventObject($data) {
 		$event = 
-		new Event(
+			new Event(
 				$data['name'], 
 				$data['description'], 
 				$data['location'], 
@@ -78,7 +83,6 @@ class Event extends Model
 	 *  Add event using the web service
 	 */
 	public static function AddEvent($event) {
-
 		$json_event = self::createPostFields($event);
 		self::pushEventToWebservice($json_event);
 	}
@@ -99,7 +103,7 @@ class Event extends Model
 			. '&endDate=' 
 			. $event->datetime_end
 			. '&userid='
-			. 1;
+			. $event->id;
 		return $json; 
 	}
 

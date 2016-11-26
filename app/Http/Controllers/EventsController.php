@@ -12,8 +12,13 @@ class EventsController extends Controller
 	 *  Index route returning an overview of 
 	 *  all the events found by the webservice
 	 */
-    public function index() {
-    	$events = Event::GetAllEvents();
+    public function index(Request $request) {
+    	if ($request->session()->has('user')) {
+    		$events = Event::GetAllEventsForUser($request->session()->get('user')->id);
+		}
+		else {
+    		$events = Event::GetAllEvents();
+		}
     	return view('events.index', ['events' => $events]);
     }
 
@@ -45,7 +50,7 @@ class EventsController extends Controller
 			$request->location,
 			($request->date_start . ' ' . $request->time_start),
 			($request->date_end . ' ' . $request->time_end),
-			1
+			$request->session()->get('user')->id
 		));
 
 		return redirect()->action('EventsController@index');
