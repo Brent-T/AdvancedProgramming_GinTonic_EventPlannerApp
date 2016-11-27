@@ -6,17 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomUser extends Model
 {
+    // URL TO WEBSERVICE
     private static $url = 'http://localhost:9000';
 
+    // Properties of CustomUser
     protected $fillable = [
         'firstname', 'surname', 'email', 'password'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    // Hidden properties
     protected $hidden = [
         'password'
     ];
@@ -28,6 +26,9 @@ class CustomUser extends Model
         $this->surname = $surname;
     }
 
+    /**
+     *  Login user with given credentials
+     */
     public static function Login($user) {
         $json_user = self::createPostFieldsLogin($user);
         $response = self::postLogin($json_user);
@@ -40,6 +41,9 @@ class CustomUser extends Model
         }
     }
 
+    /**
+     *  Create poststring from credentials to login in user
+     */
     private static function createPostFieldsLogin($user) {
         $json = 
             'email=' 
@@ -49,6 +53,9 @@ class CustomUser extends Model
         return $json; 
     }
 
+    /**
+     *  Use curl to communicate with webservice and verify login
+     */
     private static function postLogin($user) {
         $curl = curl_init(self::$url . '/login');
         curl_setopt($curl, CURLOPT_HEADER, false);
@@ -63,6 +70,9 @@ class CustomUser extends Model
         return $response;
     }
 
+    /**
+     *  Convert a user from json format to CustomUser object
+     */
     private static function convertJsonToUser($json) {
         $user = new CustomUser();
         if(isset($json->userId)) $user->id = $json->userId;
@@ -72,6 +82,9 @@ class CustomUser extends Model
         return $user;
     }
 
+    /**
+     *  Register a user
+     */
     public static function Register($user) {
         $json_user = self::createPostFieldsRegister($user);
         $response = self::postRegister($json_user);
@@ -84,6 +97,9 @@ class CustomUser extends Model
         }
     }
 
+    /**
+     *  Create poststring from user info to register a user
+     */
     private static function createPostFieldsRegister($user) {
         $json =
         	'firstname=' 
@@ -97,6 +113,9 @@ class CustomUser extends Model
         return $json; 
     }
 
+    /**
+     *  Use curl to communicate with webservice and register the user
+     */
     private static function postRegister($json_user) {
         $curl = curl_init(self::$url . '/register');
         curl_setopt($curl, CURLOPT_HEADER, false);

@@ -11,28 +11,39 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+/**
+ *  General routes
+ */
 
-Route::get('/home', 'HomeController@index');
+	Route::get('/', 'HomeController@index');
+	Route::get('/home', 'HomeController@index');
 
-Route::group(['prefix' => 'events'], function () {
-	Route::get('/', 'EventsController@index');
-	Route::get('/overview', 'EventsController@index');
-	Route::post('/addEvent', 'EventsController@addEvent');
+/**
+ *  Event routes
+ */
 
-	Route::group(['prefix' => '/{event_id}'], function () {
-		Route::get('/', 'EventsController@detail')->where('event_id', '[0-9]+');
-		Route::post('/suggestdate', 'EventsController@addSuggestedDateToEvent')->where('event_id', '[0-9]+');
-		Route::post('/suggestlocation', 'EventsController@addSuggestedLocationToEvent')->where('event_id', '[0-9]+');
+	Route::group(['prefix' => 'events'], function () {
+		Route::get('/', 'EventsController@index');
+		Route::get('/overview', 'EventsController@index');
+		Route::post('/addEvent', 'EventsController@addEvent');
+
+		Route::group(['prefix' => '/{event_id}'], function () {
+			Route::get('/', 'EventsController@detail')->where('event_id', '[0-9]+');
+			Route::post('/suggestdate', 'EventsController@addSuggestedDateToEvent')->where('event_id', '[0-9]+');
+			Route::post('/suggestlocation', 'EventsController@addSuggestedLocationToEvent')->where('event_id', '[0-9]+');
+		});
+
 	});
 
-});
+/**
+ *  User routes
+ */
 
-Route::group(['prefix' => 'user'], function () {
-	Route::get('/login', 'UserController@showLogin');
-	Route::post('/login', 'UserController@login');
-	Route::get('/logout', 'UserController@logout');
-	Route::get('/register', 'UserController@showRegister');
-	Route::post('/register', 'UserController@register');
-	Route::get('/profile', 'UserController@profile');
-});
+	Route::group(['prefix' => 'user'], function () {
+		Route::get('/login', 'UserController@showLogin');
+		Route::post('/login', 'UserController@login');
+		Route::get('/logout', 'UserController@logout');
+		Route::get('/register', 'UserController@showRegister');
+		Route::post('/register', 'UserController@register');
+		Route::get('/profile', 'UserController@profile');
+	});
