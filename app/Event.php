@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
 	// URL TO WEBSERVICE
-    private static $url = 'http://localhost:9000'; 
+	private static $url = 'http://localhost:9000'; 
 
-    // Properties of Event
-    protected $fillable = [
-        'id', 'name', 'description', 'location', 'datetime_start', 'datetime_end'
-    ];
+	// Properties of Event
+	protected $fillable = [
+		'id', 'name', 'description', 'location', 'datetime_start', 'datetime_end'
+	];
 
 	public function __construct($name = "", $description = "", $location = "", $datetime_start = "", $datetime_end = "", $id = '1') {
 		$this->name = $name;
@@ -34,27 +34,27 @@ class Event extends Model
 	/**
 	 *  Convert json array to array of Event array
 	 */
-    private static function convertJsonToEventList($json_list) {
-    	$events = array();
+	private static function convertJsonToEventList($json_list) {
+		$events = array();
 		foreach ($json_list as $json_event) {
 			array_push($events, self::convertJsonToEvent($json_event));
 		}
 		return $events;
-    }
+	}
 
 	/**
 	 *  Convert json to Event object
 	 */
 	private static function convertJsonToEvent($json) {
-        $event = new Event();
-        if(isset($json->id)) $event->id = $json->id;
-        if(isset($json->name)) $event->name = $json->name;
-        if(isset($json->description)) $event->description = $json->description;
-        if(isset($json->location)) $event->location = $json->location;
-        if(isset($json->startDate)) $event->datetime_start = $json->startDate;
-        if(isset($json->endDate)) $event->datetime_end = $json->endDate;
-        return $event;
-    }
+		$event = new Event();
+		if(isset($json->id)) $event->id = $json->id;
+		if(isset($json->name)) $event->name = $json->name;
+		if(isset($json->description)) $event->description = $json->description;
+		if(isset($json->location)) $event->location = $json->location;
+		if(isset($json->startDate)) $event->datetime_start = $json->startDate;
+		if(isset($json->endDate)) $event->datetime_end = $json->endDate;
+		return $event;
+	}
 
 	/**
 	 *  Return all events for a user

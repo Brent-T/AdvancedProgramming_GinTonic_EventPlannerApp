@@ -12,28 +12,28 @@ class EventsController extends Controller
 	 *  Index route returning an overview of 
 	 *  all the events found by the webservice
 	 */
-    public function index(Request $request) {
-    	if ($request->session()->has('user')) {
-    		$events = Event::GetAllEventsForUser($request->session()->get('user')->id);
+	public function index(Request $request) {
+		if ($request->session()->has('user')) {
+			$events = Event::GetAllEventsForUser($request->session()->get('user')->id);
 		}
 		else {
-    		$events = Event::GetAllEvents();
+			$events = Event::GetAllEvents();
 		}
-    	return view('events.index', ['events' => $events]);
-    }
+		return view('events.index', ['events' => $events]);
+	}
 
-    /**
+	/**
 	 *  Detail page of an event by id
 	 */
-    public function detail($id) {
-    	$event = Event::GetEventById($id);
-    	return view('events.detail', ['event' => $event]);
-    }
+	public function detail($id) {
+		$event = Event::GetEventById($id);
+		return view('events.detail', ['event' => $event]);
+	}
 
-    /**
+	/**
 	 *  Route for handling post of an event
 	 */
-    public function addEvent(Request $request) {
+	public function addEvent(Request $request) {
 		$this->validate($request, [
 			'name' => 'required',
 			'description' => '',
@@ -60,7 +60,7 @@ class EventsController extends Controller
 	/**
 	 *  Route for handling post of adding suggested date to event
 	 */
-    public function addSuggestedDateToEvent(Request $request) {
+	public function addSuggestedDateToEvent(Request $request) {
 		$this->validate($request, [
 			'date_start' => 'required',
 			'time_start' => 'required',
@@ -76,7 +76,7 @@ class EventsController extends Controller
 	/**
 	 *  Route for handling post of adding suggested location to event
 	 */
-    public function addSuggestedLocationToEvent(Request $request) {
+	public function addSuggestedLocationToEvent(Request $request) {
 		$this->validate($request, [
 			'location' => 'required'
 		]);
