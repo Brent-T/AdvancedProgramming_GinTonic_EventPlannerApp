@@ -34,5 +34,5 @@ Route::group(['prefix' => 'user'], function () {
 	Route::get('/logout', 'UserController@logout');
 	Route::get('/register', 'UserController@showRegister');
 	Route::post('/register', 'UserController@register');
-	Route::get('/{user_id}/profile', 'UserController@profile')->where('user_id', '[0-9]+');
+	Route::get('/profile', 'UserController@profile');
 });
