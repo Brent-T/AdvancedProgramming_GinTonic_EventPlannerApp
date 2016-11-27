@@ -43,7 +43,7 @@ class UserController extends Controller
 	 */
 	public function logout(Request $request) {
 		$request->session()->forget('user');
-		return view('home.index');
+		return redirect()->action('HomeController@index');		
 	}
 
 	/**
