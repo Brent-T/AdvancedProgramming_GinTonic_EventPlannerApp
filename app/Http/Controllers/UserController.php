@@ -7,16 +7,23 @@ use App\CustomUser;
 
 class UserController extends Controller
 {
+	/**
+	 *  Show login page
+	 */
 	public function showLogin() {
     	return view('login.login');
     }
 
+    /**
+	 *  Login a user by credentials 
+	 */
     public function login(Request $request) {
     	$this->validate($request, [
 			'email' => 'required',
 			'password' => 'required'
 		]);
 
+    	// Try to login user if found in database
     	$user = CustomUser::Login(new CustomUser(
 			$request->email,
 			$request->password
@@ -31,15 +38,24 @@ class UserController extends Controller
 		}    	
     }
 
+    /**
+	 *  Logout current user
+	 */
 	public function logout(Request $request) {
 		$request->session()->forget('user');
 		return view('home.index');
     }
 
+    /**
+	 *  Show registration page
+	 */
     public function showRegister() {
     	return view('register.register');
     }
 
+    /**
+	 *  Register a user
+	 */
     public function register(Request $request) {
     	$this->validate($request, [
 			'firstname' => 'required',
@@ -48,6 +64,8 @@ class UserController extends Controller
 			'password' => 'required'
 		]);
 
+    	// Try to register a user if no user with given email
+    	// already exists
     	$user = CustomUser::Register(new CustomUser(
 			$request->email,
 			$request->password,
@@ -64,12 +82,15 @@ class UserController extends Controller
 		}   
     }
 
-    public function profile($id) {
-    	return view('user.profile', ['id' => $id]);
+    /**
+	 *  Show profile page of logged in user
+	 */
+    public function profile() {
+    	return view('user.profile');
     }
 
     /**
-	 *  Route for updating user's name
+	 *  Update user's name
 	 */
     public function updateName(Request $request) {
 	
