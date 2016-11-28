@@ -87,23 +87,26 @@
 				<div class="form-group row">
 					<label for="inputPassword3" class="col-sm-2 col-form-label">Current password</label>
 					<div class="col-sm-10">
-						{!! Form::text('currentpassword', '', ['class' => 'form-control', 'placeholder' => 'Current password']) !!}
+						{!! Form::password('currentpassword',['class' => 'form-control', 'placeholder' => 'Current password', 'type' => 'password', 'required']) !!}
 					</div>
 				</div>
-				<div class="form-group row">
+				<div class="form-group row input-pw1">
 					<label for="inputPassword3" class="col-sm-2 col-form-label">New password</label>
 					<div class="col-sm-10">
-						{!! Form::text('newpassword', '', ['class' => 'form-control', 'placeholder' => 'New password']) !!}
+						{!! Form::password('newpassword',['class' => 'form-control js-check-trigger pw1', 'placeholder' => 'New password', 'type' => 'password', 'required']) !!}
+						<div class="form-control-feedback"></div>
 					</div>
 				</div>
-				<div class="form-group row">
+				<div class="form-group row input-pw2">
 					<label for="inputPassword3" class="col-sm-2 col-form-label">Confirm password</label>
 					<div class="col-sm-10">
-						{!! Form::text('confirmpassword', '', ['class' => 'form-control', 'placeholder' => 'Confirm password']) !!}
+						{!! Form::password('confirmpassword',['class' => 'form-control js-check-trigger pw2', 'placeholder' => 'Confirm password', 'type' => 'password', 'required']) !!}
+						<div class="form-control-feedback"></div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 					{!! Form::submit('Update password', ['class' => 'btn btn-outline-warning float-xs-right']) !!}
+					{!! Form::hidden('userId', Session::get('user')->id) !!}
 				</div>
 			</div>
 		</div>

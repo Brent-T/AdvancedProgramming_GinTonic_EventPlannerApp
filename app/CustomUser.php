@@ -189,4 +189,42 @@ class CustomUser extends Model
 			return null;
 		}
 	}
+
+	/**
+	 *  Use curl to communicate with webservice and update password of the user
+	 */
+	public static function postUpdatePassword($user, $currentpassword, $newpassword) {
+		
+		$user['password'] = $currentpassword;
+		$json_user = self::createPostFieldsLogin($user);
+		$response = self::postLogin($json_user);
+
+		if(!empty($response)) {
+			$response = self::convertJsonToUser(json_decode($response));
+
+			$json =
+			'id=' 
+			. $response->id
+			. '&password=' 
+			. $newpassword;
+
+		
+			$curl = curl_init(self::$url . '/updatepassword');
+			curl_setopt($curl, CURLOPT_HEADER, false);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_POST, true);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+			$response = curl_exec($curl);
+			curl_close($curl);
+
+			if ($response === 'true') {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
 }

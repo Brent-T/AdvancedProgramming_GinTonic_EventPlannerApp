@@ -130,16 +130,31 @@ class UserController extends Controller
 
 
 	/**
-	 *  Update user's email address
+	 *  Update user's profile picture
 	 */
 	public function updateProfilepicture(Request $request) {
-		// $this->validate($request, [
-		// 	'profile_picture' => 'required',
-		// ]);
-
 		$image = $request->file('profile_picture');
 		var_dump($image);
 
 		$image->move('./img/profilepictures/',$request->userId . '.' . $image->getClientOriginalExtension());
+	}
+
+	/**
+	 *  Update user's password
+	 */
+	public function updatePassword(Request $request) {
+		$this->validate($request, [
+			'currentpassword' => 'required',
+			'newpassword' => 'required',
+			'confirmpassword' => 'required',
+		]);
+
+		$result = CustomUser::postUpdatePassword($request->session()->get('user'), $request->currentpassword, $request->newpassword);
+
+		if($result === true) {
+			return redirect()->action('UserController@profile');
+		} else {
+			return redirect()->action('UserController@profile');
+		}
 	}
 }

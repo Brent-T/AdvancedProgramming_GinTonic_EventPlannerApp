@@ -51,5 +51,6 @@
 			Route::post('/updatename', 'UserController@updateName');
 			Route::post('/updateemail', 'UserController@updateEmail');
 			Route::post('/updateprofilepicture', 'UserController@updateProfilepicture');
+			Route::post('/updatepassword', 'UserController@updatePassword');
 		});
 	});
