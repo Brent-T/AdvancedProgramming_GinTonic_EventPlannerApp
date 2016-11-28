@@ -127,4 +127,19 @@ class UserController extends Controller
 			echo 'derp';
 		}
 	}
+
+
+	/**
+	 *  Update user's email address
+	 */
+	public function updateProfilepicture(Request $request) {
+		// $this->validate($request, [
+		// 	'profile_picture' => 'required',
+		// ]);
+
+		$image = $request->file('profile_picture');
+		var_dump($image);
+
+		$image->move('./img/profilepictures/',$request->userId . '.' . $image->getClientOriginalExtension());
+	}
 }
