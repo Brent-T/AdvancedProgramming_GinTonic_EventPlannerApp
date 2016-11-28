@@ -93,6 +93,38 @@ class UserController extends Controller
 	 *  Update user's name
 	 */
 	public function updateName(Request $request) {
-	
+		$this->validate($request, [
+			'firstname' => 'required',
+			'surname' => 'required',
+		]);
+
+		$user = CustomUser::postUpdateName($request->userId, $request->firstname, $request->surname);
+
+		if($user) {
+			$request->session()->put('user', $user);
+			return redirect()->action('UserController@profile');
+		}
+		else{
+			echo 'derp';
+		}
+	}
+
+	/**
+	 *  Update user's email address
+	 */
+	public function updateEmail(Request $request) {
+		$this->validate($request, [
+			'email' => 'required',
+		]);
+
+		$user = CustomUser::postUpdateEmail($request->userId, $request->email);
+
+		if($user) {
+			$request->session()->put('user', $user);
+			return redirect()->action('UserController@profile');
+		}
+		else{
+			echo 'derp';
+		}
 	}
 }

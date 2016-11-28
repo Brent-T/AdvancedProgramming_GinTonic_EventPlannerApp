@@ -45,5 +45,10 @@
 		Route::get('/logout', 'UserController@logout');
 		Route::get('/register', 'UserController@showRegister');
 		Route::post('/register', 'UserController@register');
-		Route::get('/profile', 'UserController@profile');
+
+		Route::group(['prefix' => '/profile'], function () {
+			Route::get('/', 'UserController@profile');
+			Route::post('/updatename', 'UserController@updateName');
+			Route::post('/updateemail', 'UserController@updateEmail');
+		});
 	});

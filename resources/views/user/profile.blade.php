@@ -9,7 +9,7 @@
 <p>Here you can change your profile data</p>
 <div class="container">
 
-
+	@include('shared.errors')
 	<div class="container no-padding no-margin">
 		<div class="col-xs-12 col-sm-3 col-md-3 form-group no-padding-left">
 			<div class="card card-block">
@@ -18,7 +18,7 @@
 					<div class="overlay">
 						<h2>Profile Picture</h2>
 						<p>
-						{!! Form::open(['url' => '/user/updateprofilepicture', 'method' => 'POST', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
+						{!! Form::open(['url' => '/user/profile/updateprofilepicture', 'method' => 'POST', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
 							<a href="#" onclick="triggerFileUpload()">CHANGE</a>
 							{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();', 'accept' => '.jpg']) !!}
 						{!! csrf_field() !!}
@@ -30,8 +30,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-9 col-md-9 form-group no-padding-right">
 			<div class="card card-block" style="padding-bottom: 3.5%;">
-				{!! Form::open(['url' => '/user/updatename', 'method' => 'POST', 'class' => 'form']) !!}
-				@include('shared.errors')
+				{!! Form::open(['url' => '/user/profile/updatename', 'method' => 'POST', 'class' => 'form']) !!}
 				<div class="container">
 					<div class="row">
 							<h4 class="card-title">Name</h4>
@@ -43,6 +42,7 @@
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 								{!! Form::submit('Update name', ['class' => 'btn btn-outline-primary float-xs-right']) !!}
+								{!! Form::hidden('userId', Session::get('user')->id) !!}
 						</div>
 					</div>
 				</div>
@@ -54,8 +54,7 @@
 	</div>
 
 	<div class="card card-block">
-		{!! Form::open(['url' => '/user/updateemail', 'method' => 'POST', 'class' => 'form']) !!}
-		@include('shared.errors')
+		{!! Form::open(['url' => '/user/profile/updateemail', 'method' => 'POST', 'class' => 'form']) !!}
 		<div class="container">
 			<div class="row">
 				<h4 class="card-title">Email address</h4>
@@ -64,6 +63,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 					{!! Form::submit('Update email address', ['class' => 'btn btn-outline-primary float-xs-right']) !!}
+					{!! Form::hidden('userId', Session::get('user')->id) !!}
 				</div>
 			</div>
 		</div>
@@ -72,8 +72,7 @@
 	</div>
 
 	<div class="card card-block">
-		{!! Form::open(['url' => '/user/updatepassword', 'method' => 'POST', 'class' => 'form']) !!}
-		@include('shared.errors')
+		{!! Form::open(['url' => '/user/profile/updatepassword', 'method' => 'POST', 'class' => 'form']) !!}
 		<div class="container">
 			<div class="row">
 				<h4 class="card-title">Password</h4>

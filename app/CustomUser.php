@@ -129,4 +129,64 @@ class CustomUser extends Model
 
 		return $response;
 	}
+
+	/**
+	 *  Use curl to communicate with webservice and update the name of the user
+	 */
+	public static function postUpdateName($id, $firstname, $surname) {
+		
+		$json =
+			'id=' 
+			. $id
+			. '&firstname=' 
+			. $firstname
+			. '&lastname=' 
+			. $surname;
+
+		
+		$curl = curl_init(self::$url . '/updatename');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+		$response = curl_exec($curl);
+		curl_close($curl);
+		
+		if($response) {
+			return self::convertJsonToUser(json_decode($response));  
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 *  Use curl to communicate with webservice and update the email address of the user
+	 */
+	public static function postUpdateEmail($id, $emailaddress) {
+		
+		$json =
+			'id=' 
+			. $id
+			. '&email=' 
+			. $emailaddress;
+
+		
+		$curl = curl_init(self::$url . '/updateemail');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+		$response = curl_exec($curl);
+		curl_close($curl);
+		
+		// var_dump($response);
+
+		if($response) {
+			return self::convertJsonToUser(json_decode($response));  
+		}
+		else {
+			return null;
+		}
+	}
 }
