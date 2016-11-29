@@ -134,9 +134,10 @@ class UserController extends Controller
 	 */
 	public function updateProfilepicture(Request $request) {
 		$image = $request->file('profile_picture');
-		var_dump($image);
+		// var_dump($image);
 
 		$image->move('./img/profilepictures/',$request->userId . '.' . $image->getClientOriginalExtension());
+		return redirect()->action('UserController@profile');
 	}
 
 	/**

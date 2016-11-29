@@ -30,6 +30,7 @@
 
 .hovereffect img {
   max-height: 155px;
+  min-height: 155px;
   display: block;
   position: relative;
   max-width: none;
