@@ -1,0 +1,23 @@
+/**
+ *
+ * Generic solution for keeping footer at bottom of page
+ *
+ */
+
+	html, body {
+		height:100%;
+	}
+
+	.wrapper {
+		min-height:100%;
+		position:relative;
+	}
+
+	footer {
+		width:100%;
+		position:absolute;
+		bottom:0;
+		color: #FFF;
+		text-align: center;
+		padding: 1.5rem 0rem;
+	}

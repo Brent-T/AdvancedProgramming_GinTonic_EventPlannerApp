@@ -1,0 +1,23 @@
+/**
+ *
+ * Custom styles for homepage
+ *
+ */
+
+	body {
+		background-image: url('./../img/homepage_background.jpg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+
+	.content {
+		color: white;
+		text-align: center;
+		margin: 15% auto;
+		height: 10%;
+	}
+
+	h1 {
+		font-size: 3rem;
+	}

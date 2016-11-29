@@ -4,15 +4,16 @@ body {
 
 /* Navbar */
 
-.navbar {
+/*.navbar {
 	background-color: #a62e38;
-}
+}*/
 
 .navbar-brand {
 	margin-top: 0.3%;
 }
 
 .navbar-toggler {
+	background-color: white;
 	border-color: #a08056 !important;
 }
 
@@ -23,8 +24,8 @@ body {
 .custom-nav-link {
 	transition: 0.3s ease;
 	text-decoration: none;
-	border-top: 4px solid #a62e38;
-	border-bottom: 4px solid #a62e38;
+	border-top: 4px solid rgba(255,255,255,0);
+	border-bottom: 4px solid rgba(255,255,255,0);
 	margin: 0 7px;
 }
 
