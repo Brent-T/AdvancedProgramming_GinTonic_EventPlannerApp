@@ -98,7 +98,7 @@ class UserController extends Controller
 			'surname' => 'required',
 		]);
 
-		$user = CustomUser::postUpdateName($request->userId, $request->firstname, $request->surname);
+		$user = CustomUser::UpdateName($request->userId, $request->firstname, $request->surname);
 
 		if($user) {
 			$request->session()->put('user', $user);
@@ -117,14 +117,14 @@ class UserController extends Controller
 			'email' => 'required',
 		]);
 
-		$user = CustomUser::postUpdateEmail($request->userId, $request->email);
+		$user = CustomUser::UpdateEmail($request->userId, $request->email);
 
 		if($user) {
 			$request->session()->put('user', $user);
 			return redirect()->action('UserController@profile');
 		}
 		else{
-			echo 'derp';
+			//Some error handeling
 		}
 	}
 
@@ -150,7 +150,7 @@ class UserController extends Controller
 			'confirmpassword' => 'required',
 		]);
 
-		$result = CustomUser::postUpdatePassword($request->session()->get('user'), $request->currentpassword, $request->newpassword);
+		$result = CustomUser::UpdatePassword($request->session()->get('user'), $request->currentpassword, $request->newpassword);
 
 		if($result === true) {
 			return redirect()->action('UserController@profile');

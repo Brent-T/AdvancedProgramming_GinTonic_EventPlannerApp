@@ -133,8 +133,23 @@ class CustomUser extends Model
 	/**
 	 *  Use curl to communicate with webservice and update the name of the user
 	 */
-	public static function postUpdateName($id, $firstname, $surname) {
+	public static function UpdateName($id, $firstname, $surname) {
 		
+		$json = self::createPostFieldsUpdateName($id, $firstname, $surname);
+		$response = self::postUpdateName($json);
+		
+		if($response) {
+			return self::convertJsonToUser(json_decode($response));  
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 *  Create poststring from user info to change name
+	 */
+	private static function createPostFieldsUpdateName($id, $firstname, $surname) {
 		$json =
 			'id=' 
 			. $id
@@ -142,8 +157,14 @@ class CustomUser extends Model
 			. $firstname
 			. '&lastname=' 
 			. $surname;
+		return $json;
+	}
 
-		
+	/**
+	 *  Use curl to communicate with webservice and update name
+	 */
+	private static function postUpdateName($json){
+
 		$curl = curl_init(self::$url . '/updatename');
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -151,7 +172,18 @@ class CustomUser extends Model
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
 		$response = curl_exec($curl);
 		curl_close($curl);
+
+		return $response;
+	}
+
+	/**
+	 *  Use curl to communicate with webservice and update the email address of the user
+	 */
+	public static function UpdateEmail($id, $emailaddress) {
 		
+		$json = self::createPostFieldsUpdateEmail($id, $emailaddress);
+		$response = self::postUpdateEmail($json);
+
 		if($response) {
 			return self::convertJsonToUser(json_decode($response));  
 		}
@@ -161,17 +193,22 @@ class CustomUser extends Model
 	}
 
 	/**
-	 *  Use curl to communicate with webservice and update the email address of the user
+	 *  Create poststring from user info to change email address
 	 */
-	public static function postUpdateEmail($id, $emailaddress) {
-		
+	private static function createPostFieldsUpdateEmail($id, $emailaddress) {
 		$json =
 			'id=' 
 			. $id
 			. '&email=' 
 			. $emailaddress;
+		return $json;
+	}
 
-		
+	/**
+	 *  Use curl to communicate with webservice and update email address
+	 */
+	private static function postUpdateEmail($json){
+
 		$curl = curl_init(self::$url . '/updateemail');
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -179,44 +216,23 @@ class CustomUser extends Model
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
 		$response = curl_exec($curl);
 		curl_close($curl);
-		
-		// var_dump($response);
 
-		if($response) {
-			return self::convertJsonToUser(json_decode($response));  
-		}
-		else {
-			return null;
-		}
+		return $response;
 	}
 
 	/**
 	 *  Use curl to communicate with webservice and update password of the user
 	 */
-	public static function postUpdatePassword($user, $currentpassword, $newpassword) {
-		
+	public static function UpdatePassword($user, $currentpassword, $newpassword) {
 		$user['password'] = $currentpassword;
 		$json_user = self::createPostFieldsLogin($user);
-		$response = self::postLogin($json_user);
+		$response_login = self::postLogin($json_user);
 
-		if(!empty($response)) {
-			$response = self::convertJsonToUser(json_decode($response));
-
-			$json =
-			'id=' 
-			. $response->id
-			. '&password=' 
-			. $newpassword;
-
-		
-			$curl = curl_init(self::$url . '/updatepassword');
-			curl_setopt($curl, CURLOPT_HEADER, false);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_POST, true);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
-			$response = curl_exec($curl);
-			curl_close($curl);
-
+		if(!empty($response_login)) {
+			$auth_user = self::convertJsonToUser(json_decode($response_login));
+			$json = self::createPostFieldsUpdatePassword($auth_user, $newpassword);
+			$response = self::postUpdatePassword($json);
+			
 			if ($response === 'true') {
 				return true;
 			} else {
@@ -227,4 +243,33 @@ class CustomUser extends Model
 			return false;
 		}
 	}
+
+	/**
+	 *  Create poststring from user info to change email address
+	 */
+	private static function createPostFieldsUpdatePassword($auth_user, $newpassword) {
+		$json =
+			'id=' 
+			. $auth_user->id
+			. '&password=' 
+			. $newpassword;
+		return $json;
+	}
+
+	/**
+	 *  Use curl to communicate with webservice and update password
+	 */
+	private static function postUpdatePassword($json){
+
+		$curl = curl_init(self::$url . '/updatepassword');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+		$response = curl_exec($curl);
+		curl_close($curl);
+
+		return $response;
+	}
+
 }
