@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/bower_components/font-awesome/css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/css/bootstrap-custom-theme.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/css/generic.css') }}" />
 
 	@yield('CSS')
 
