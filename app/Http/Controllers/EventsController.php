@@ -8,6 +8,11 @@ use App\Event;
 
 class EventsController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('authenticate');
+	}
+
 	/**
 	 *  Index route returning an overview of 
 	 *  all the events found by the webservice
