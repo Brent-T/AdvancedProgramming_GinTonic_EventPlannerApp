@@ -16,12 +16,8 @@ $(document).ready(function(){
 	})
 
 	$( "#suggest" ).keyup(function() {
-		$('.typeahead').typeahead()
 		var text = $( "#suggest" ).val();
-		data = getUsersContaingString(text);
-		console.log(data);
-		$("#suggest").typeahead({ source: data, 
-            autoSelect: true});	
+		getUsersContaingString(text);
 	});	
 });
 
@@ -39,20 +35,26 @@ var initGoogleAutocomplete = function() {
 	autocomplete = new google.maps.places.Autocomplete(inputStart, options);
 }
 
+newData = [];
 var getUsersContaingString = function(input) {
-	newData = [];
+	$('.typeahead').typeahead('destroy')
+	console.log('requests');
 	$.ajax({
 	    type: "GET",
 	    url: "http://localhost:9000/usercontains?text=",
 	    data: input,
 	    dataType: "json",
-	    async: false,
+	    async: true,
 	    success: function (data) {
+	    	newData = [];
 	        $(data).each(function( index ) {
 			  var dataItem = {id: data[index]['userId'], name:(data[index]['firstName'] + " " + data[index]['surName']) }
 			  newData.push(dataItem);
 			});
+
+	        $('.typeahead').typeahead()
+			$("#suggest").typeahead({ source: newData, 
+            autoSelect: true});	
 	    }
 	});
-	return newData;
 }
