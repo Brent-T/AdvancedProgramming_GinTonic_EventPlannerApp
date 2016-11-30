@@ -46,7 +46,7 @@
 		Route::get('/register', 'UserController@showRegister');
 		Route::post('/register', 'UserController@register');
 
-		Route::group(['prefix' => '/profile'], function () {
+		Route::group(['prefix' => '/profile', 'middleware' => ['authenticate']], function () {
 			Route::get('/', 'UserController@profile');
 			Route::post('/updatename', 'UserController@updateName');
 			Route::post('/updateemail', 'UserController@updateEmail');
