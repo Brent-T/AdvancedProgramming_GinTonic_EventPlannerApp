@@ -95,7 +95,7 @@
 
 <div class="row">
 	<div class="float-xs-right custom-button-group-event-detail">
-		<button type="button" class="btn btn-outline-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Invite people to join this event</button>
+		<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addpeople" ><i class="fa fa-user-plus" aria-hidden="true"></i> Invite people to join this event</button>
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestdate"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Suggest date</button>
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestlocation"><i class="fa fa-map-marker" aria-hidden="true"></i> Suggest location</button>
 	</div>
@@ -169,7 +169,38 @@
 				{!! Form::hidden('event_id', $event->id) !!}
 			</div>
 		{!! csrf_field() !!}
-	{!! Form::close() !!}
+		{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+
+<!-- Modal Suggest location -->
+<div class="modal fade" id="addpeople" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		{!! Form::open(['url' => '/events/' . $event->id . '/addpeople', 'method' => 'POST', 'class' => 'form']) !!}
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Invite people</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+					{!! Form::label('invite', 'Invite:') !!}
+					{!! Form::text('location', '', ['class' => 'form-control', 'id' => 'suggest', ]) !!}
+					<!-- 'data-provide' => 'typeahead' -->
+			</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				{!! Form::submit('Send Invite', ['class' => 'btn btn-primary']) !!}
+				{!! Form::hidden('event_id', $event->id) !!}
+			</div>
+		{!! csrf_field() !!}
+		{!! Form::close() !!}
 		</div>
 	</div>
 </div>
@@ -295,5 +326,6 @@
 
 @section('JS')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-UJgNW-U_SnJvWHweXdT6OlMmnNqtVI&libraries=places"></script>
+<script src="{{ @url('/js/bootstrap3-typeahead.min.js') }}"></script>
 <script src="{{ @url('/js/event-js.js') }}"></script>
 @endsection

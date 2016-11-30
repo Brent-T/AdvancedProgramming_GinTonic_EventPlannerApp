@@ -1,48 +1,58 @@
 $(document).ready(function(){
 	console.log("loaded");
-
-
-	// Google autocomplete
-	var initGoogleAutocomplete = function() {
- 
-		// Google suggestions code
-		var inputStart = document.getElementById('google-autocomplete');
-		var options = {};
-		autocomplete = new google.maps.places.Autocomplete(inputStart, options);
-	}
-
 	initGoogleAutocomplete();
-
-
-	// hide form on load
+	
 	if ($( "#toggle-init" ).val() == '') {
-			$('#jq-toggle').hide();
-		}
-	// $('#jq-toggle').hide();
-	// console.log("executed");
-
+		$('#jq-toggle').hide();
+	}
 
 	// slide down if title is focussed
 	$( "#toggle-init" ).focus(function() {
 		$('#jq-toggle').slideDown();
 	});
 
-	
-	
-	// If no title -> slide up
-	// $( "#toggle-init" ).focusout(function() {
-	// 	if ($( "#toggle-init" ).val() == '') {
-	// 		$('#jq-toggle').slideUp();
-	// 	}
-	// });
-
 	$(function () {
 	  $('[data-toggle="popover"]').popover()
 	})
-	
+
+	$( "#suggest" ).keyup(function() {
+		$('.typeahead').typeahead()
+		var text = $( "#suggest" ).val();
+		data = getUsersContaingString(text);
+		console.log(data);
+		$("#suggest").typeahead({ source: data, 
+            autoSelect: true});	
+	});	
 });
 
 
 var customSlideUp = function() {
 		$('#jq-toggle').slideUp();
+}
+
+// Google autocomplete
+var initGoogleAutocomplete = function() {
+
+	// Google suggestions code
+	var inputStart = document.getElementById('google-autocomplete');
+	var options = {};
+	autocomplete = new google.maps.places.Autocomplete(inputStart, options);
+}
+
+var getUsersContaingString = function(input) {
+	newData = [];
+	$.ajax({
+	    type: "GET",
+	    url: "http://localhost:9000/usercontains?text=",
+	    data: input,
+	    dataType: "json",
+	    async: false,
+	    success: function (data) {
+	        $(data).each(function( index ) {
+			  var dataItem = {id: data[index]['userId'], name:(data[index]['firstName'] + " " + data[index]['surName']) }
+			  newData.push(dataItem);
+			});
+	    }
+	});
+	return newData;
 }
