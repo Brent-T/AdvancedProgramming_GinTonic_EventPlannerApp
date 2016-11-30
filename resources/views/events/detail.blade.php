@@ -327,5 +327,5 @@
 @section('JS')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-UJgNW-U_SnJvWHweXdT6OlMmnNqtVI&libraries=places"></script>
 <script src="{{ @url('/js/bootstrap3-typeahead.min.js') }}"></script>
-<script src="{{ @url('/js/event-js.js') }}"></script>
+<script src="{{ @url('/js/event-detail.js') }}"></script>
 @endsection
