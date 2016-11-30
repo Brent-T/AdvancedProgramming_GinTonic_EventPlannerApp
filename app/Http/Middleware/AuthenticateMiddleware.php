@@ -15,6 +15,10 @@ class AuthenticateMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if (!$request->session()->has('user')) {
+            return redirect()->action('HomeController@index');
+        }
+
         return $next($request);
     }
 }
