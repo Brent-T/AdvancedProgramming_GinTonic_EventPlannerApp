@@ -25,3 +25,30 @@
 	h1 {
 		font-size: 3rem;
 	}
+
+	a {
+		color: #a08056;		
+		display: block;
+	}
+
+	a:hover {
+		color: #a08056;
+	}
+
+	.content a {		
+		margin: 1rem 0rem;
+	}
+
+	.btn-primary {
+		background-color: #a08056;
+		border-color: #a08056;
+		color: #FFF;
+	}
+
+	.btn-primary:hover {
+		background-color: #9a7545;
+		border-color: #9a7545;
+		color: #FFF;
+	}
+
+	
