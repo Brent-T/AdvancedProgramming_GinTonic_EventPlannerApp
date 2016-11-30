@@ -29,9 +29,11 @@
 					<li class="nav-item custom-nav-link">
 						<a class="nav-link" href="{{ url('/home') }}">Home </a>
 					</li>
+					@if(Session::has('user'))
 					<li class="nav-item custom-nav-link">
 						<a class="nav-link" href="{{ url('/events') }}">Events </a>
 					</li>
+					@endif
 				</ul>
 				<ul class="nav navbar-nav float-xs-right">
 				@if(Session::has('user'))
