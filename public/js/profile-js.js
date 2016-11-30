@@ -1,7 +1,4 @@
 $(document).ready(function(){
-	console.log("loaded");
-
-
 	// add colors to input fields when field match or do not match
 	$( ".js-check-trigger" ).keyup(function() {
 
@@ -51,7 +48,7 @@ $(document).ready(function(){
 });
 
 
-
+// triggers file upload
 var triggerFileUpload = function() {
 	$('.trigger-file-upload').click();
 }

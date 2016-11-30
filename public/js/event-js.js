@@ -16,7 +16,7 @@ $(document).ready(function(){
 	})
 });
 
-
+// slide up form when requested
 var customSlideUp = function() {
 		$('#jq-toggle').slideUp();
 }

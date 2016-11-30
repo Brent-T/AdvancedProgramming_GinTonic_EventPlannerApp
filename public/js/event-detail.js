@@ -1,10 +1,6 @@
 $(document).ready(function(){
-	console.log("loaded");
 	initGoogleAutocomplete();
-
-	$(function () {
-		$('[data-toggle="popover"]').popover()
-	})
+	$(function () {$('[data-toggle="popover"]').popover()})
 
 	$( "#suggest" ).keyup(function() {
 		var text = $( "#suggest" ).val();
@@ -19,6 +15,7 @@ var initGoogleAutocomplete = function() {
 	autocomplete = new google.maps.places.Autocomplete(inputStart, options);
 }
 
+// ajax request to webservice and returning suggested users based in user input
 var getUsersContaingString = function(input) {
 	$('.typeahead').typeahead('destroy')
 	$.ajax({
@@ -33,6 +30,7 @@ var getUsersContaingString = function(input) {
 	});
 }
 
+// create data array for suggestionsbox
 var createDataArray = function(data) {
 	newData = [];
 	$(data).each(function( index ) {
@@ -41,6 +39,7 @@ var createDataArray = function(data) {
 	return newData;
 }
 
+//display suggestionsbox
 var displaySuggestedUsers = function(data) {
 	$('.typeahead').typeahead()
 	$("#suggest").typeahead({ source: createDataArray(data), autoSelect: true});	
