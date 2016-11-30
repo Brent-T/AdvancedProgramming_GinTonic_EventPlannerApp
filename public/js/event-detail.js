@@ -25,7 +25,7 @@ var getUsersContaingString = function(input) {
 		dataType: "json",
 		async: true,
 		success: function (data) {
-				displaySuggestedUsers(data);
+			displaySuggestedUsers(data);
 		}
 	});
 }
