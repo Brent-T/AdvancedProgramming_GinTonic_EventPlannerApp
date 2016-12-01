@@ -33,7 +33,8 @@ class UserController extends Controller
 			$request->session()->put('user', $user);
 			return redirect()->action('EventsController@index');
 		}
-		else{
+		else {
+        	$request->session()->flash('error_message', 'Invalid credentials...');
 			return view('login.login');
 		}    	
 	}
@@ -77,7 +78,8 @@ class UserController extends Controller
 			$request->session()->put('user', $user);
 			return redirect()->action('EventsController@index');
 		}
-		else{
+		else {
+        	$request->session()->put('error_message', 'User was already registered...');
 			return view('register.register');
 		}   
 	}
