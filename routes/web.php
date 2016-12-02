@@ -31,6 +31,7 @@
 			Route::get('/', 'EventsController@detail')->where('event_id', '[0-9]+');
 			Route::post('/suggestdate', 'EventsController@addSuggestedDateToEvent')->where('event_id', '[0-9]+');
 			Route::post('/suggestlocation', 'EventsController@addSuggestedLocationToEvent')->where('event_id', '[0-9]+');
+			Route::post('/addpeople', 'EventsController@addPeopleToEvent')->where('event_id', '[0-9]+');
 		});
 
 	});

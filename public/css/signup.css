@@ -1,8 +1,3 @@
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
 
 .form-signin {
   max-width: 550px;
@@ -28,9 +23,50 @@ body {
   z-index: 2;
 }
 .btn-primary {
-  background-color: #a62e38;
-  border-color: #D00;
+    background-color: #a08056;
+    border-color: #a08056;
+    color: #FFF;
 }
 .btn-primary:hover {
-  background-color: #A12D36;
+    background-color: #9a7545;
+    border-color: #9a7545;
+    color: #FFF;
+  }
+
+p {
+  color: white;
+}
+
+label {
+  color: white;
+}
+
+a {
+  color: #a08056;
+}
+
+a:hover {
+  color: #9a7545;
+}
+
+.form-signin-heading {
+  color: white !important;
+}
+
+body {
+    background-image: url('./../img/homepage_background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+html {
+  height: 100%;
+}
+
+.home {
+    color: white;
+    font-size: 2.5rem;
+    margin-left: 1%;
+    margin-top: 0.5%;
 }

@@ -3,9 +3,25 @@ $(document).ready(function(){
 	$(function () {$('[data-toggle="popover"]').popover()})
 
 	$( "#suggest" ).keyup(function() {
+		$('.person-does-not-exist').hide();
 		var text = $( "#suggest" ).val();
 		getUsersContaingString(text);
 	});	
+
+	$( "#add-person" ).click(function() {
+		var current = $( "#suggest" ).typeahead("getActive");
+		if (current) {
+			// Some item from your model is active!
+			if (current.name == $( "#suggest" ).val()) {
+				console.log(current);
+				$('.table-to-be-invited').append('<tr><td>'+current.name+'</td><td><button type="button" class="btn btn-outline-danger btn-sm" onclick="$(this).parents(' + " ' " +  'tr' + " ' " + ').remove();"><i class="fa fa-times" aria-hidden="true"></i></button></td><td><input name="toBeAdded[]" type="hidden" value="' + current.id + '"></td></tr>');
+			} else {
+				$('.person-does-not-exist').show();
+			}
+		} else {
+			$('.person-does-not-exist').show();
+		}
+	});
 });
 
 // Google autocomplete

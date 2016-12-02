@@ -186,19 +186,32 @@
 				<h4 class="modal-title" id="myModalLabel">Invite people</h4>
 			</div>
 			<div class="modal-body">
-				<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 form-group">
-					{!! Form::label('invite', 'Invite:') !!}
-					{!! Form::text('location', '', ['class' => 'form-control', 'id' => 'suggest', ]) !!}
-					<!-- 'data-provide' => 'typeahead' -->
+				<div class="row form-inline container custom-center">
+					<div class="col-xs-8 col-sm-8 col-md-8 form-group">
+						{!! Form::text('location', '', ['class' => 'form-control', 'id' => 'suggest', 'style' => 'width: 100%;']) !!}
+						<!-- <button type="button" class="btn btn-outline-success form-control" ><i class="fa fa-user-plus" aria-hidden="true"></i> Add</button> -->
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 form-group">
+						<button type="button" class="btn btn-outline-success form-control" id="add-person"><i class="fa fa-user-plus" aria-hidden="true"></i> Add</button>
+					</div>
+				</div>
+				<div class="alert alert-danger person-does-not-exist" role="alert" style="display: none;">
+					<strong>Sorry!</strong> This person does not exist.
+				</div>
 			</div>
+		<div class="modal-footer"></div>
+		<div class="modal-body invitees-box">
+		<h5>To be invited</h5>
+			<table class="table table-to-be-invited borderless">
+				<tbody>
+				</tbody>
+			</table>
 		</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				{!! Form::submit('Send Invite', ['class' => 'btn btn-primary']) !!}
-				{!! Form::hidden('event_id', $event->id) !!}
-			</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			{!! Form::submit('Send Invite', ['class' => 'btn btn-primary']) !!}
+			{!! Form::hidden('event_id', $event->id) !!}
+		</div>
 		{!! csrf_field() !!}
 		{!! Form::close() !!}
 		</div>

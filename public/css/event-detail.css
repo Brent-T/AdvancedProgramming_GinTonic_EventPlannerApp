@@ -81,3 +81,32 @@
 .table-dates tr td:last-child {
 	width: 20%;
 }
+
+.table-to-be-invited {
+	width: 50%;
+}
+
+.table-to-be-invited tr {
+	
+}
+
+
+.custom-center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.borderless td{
+	border: none;
+	padding: 2px;
+}
+
+.person-does-not-exist {
+    margin-top: 1%;
+    width: 58%;
+    margin-left: 5%;
+}
+
+.invitees-box {
+	margin-left: 5%;
+}

@@ -21,7 +21,7 @@
 	</head>
 
 	<body>
-		
+		<a class="home" href="{{ url('/home') }}"><i class="fa fa-home" aria-hidden="true"></i></a>
 		<div class="container">
 
 			{!! Form::open(['url' => url('/user/login'), 'method' => 'POST', 'class' => 'form-signin']) !!}
@@ -35,7 +35,7 @@
 					</label>
 				</div>
 				{!! Form::submit('Sign in', ['class' => 'btn-lg btn btn-primary btn-block']) !!}
-				<p>no account? Sign up <a class="text-danger" href="{{ url('/user/register') }}">here</a></p>
+				<p>no account? Sign up <a class="" href="{{ url('/user/register') }}">here</a></p>
 			{!! csrf_field() !!}
 			{!! Form::close() !!}
 

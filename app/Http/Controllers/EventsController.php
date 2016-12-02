@@ -88,4 +88,19 @@ class EventsController extends Controller
 
 		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 	}
+
+	/**
+	 *  Route for handling post of adding people to this event
+	 */
+	public function addPeopleToEvent(Request $request) {
+
+
+		var_dump($request->toBeAdded);
+
+		$this->validate($request, [
+			'toBeAdded' => 'required'
+		]);
+
+		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
+	}
 }
