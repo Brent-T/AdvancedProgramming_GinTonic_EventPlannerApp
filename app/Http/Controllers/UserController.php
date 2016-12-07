@@ -79,7 +79,7 @@ class UserController extends Controller
 			return redirect()->action('EventsController@index');
 		}
 		else {
-        	$request->session()->put('error_message', 'User was already registered...');
+        	$request->session()->flash('error_message', 'User was already registered...');
 			return view('register.register');
 		}   
 	}

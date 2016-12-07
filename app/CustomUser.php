@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Support\Facades\Hash;
 
 class CustomUser extends Model
 {
 	// URL TO WEBSERVICE
 	private static $url = 'http://localhost:9000';
+
+	private static $DEFAULT_HASH_ALGO = "SHA256";
 
 	// Properties of CustomUser
 	protected $fillable = [
@@ -111,6 +114,12 @@ class CustomUser extends Model
 			. '&password=' 
 			. $user->password;
 		return $json; 
+	}
+
+	private static function hashUserPassword($user) {
+		$hash = hash("SHA256", $user->passsword);
+		var_dump($hash);
+		return $hash;
 	}
 
 	/**
