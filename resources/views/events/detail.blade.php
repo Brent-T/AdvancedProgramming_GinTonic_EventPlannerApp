@@ -299,7 +299,11 @@
 				@forelse ($items as $item)
 				<tr>
 					<td>{{$item->name}}</td>
+					@if($item->description)
 					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{$item->description}}">info</button></td>
+					@else
+					<td><button type="button" class="btn btn-outline-primary btn-sm disabled" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{$item->description}}">info</button></td>
+					@endif
 					<td><progress class="progress progress-success" value="{{$item->score}}" max="10"></progress></td>
 					<td class="text-xs-center">
 						<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
