@@ -188,8 +188,8 @@
 			<div class="modal-body">
 				<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 form-group">
-					{!! Form::label('name', 'name:') !!}
-					{!! Form::text('name', '', ['class' => 'form-control' ]) !!}
+					{!! Form::label('item', 'name:') !!}
+					{!! Form::text('item', '', ['class' => 'form-control' ]) !!}
 					{!! Form::label('description', 'description:') !!}
 					{!! Form::text('description', '', ['class' => 'form-control' ]) !!}
 			</div>
@@ -296,51 +296,20 @@
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<table class="table table-suggestions">
 			<tbody>
+				@forelse ($items as $item)
 				<tr>
-					<td>Gender Equal food</td>
-					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="dafuq is this even?">info</button></td>
-					<td><progress class="progress progress-success" value="5" max="10"></progress></td>
+					<td>{{$item->name}}</td>
+					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{$item->description}}">info</button></td>
+					<td><progress class="progress progress-success" value="{{$item->score}}" max="10"></progress></td>
 					<td class="text-xs-center">
 						<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
 						<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
 					</td>
 				</tr>
-				<tr>
-					<td>Apache Helicopters</td>
-					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="CHOP CHOP MOFO'S">info</button></td>
-					<td><progress class="progress progress-success" value="7" max="10"></progress></td>
-					<td class="text-xs-center">
-						<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-						<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
-					</td>
-				</tr>
-				<tr>
-					<td>Trebuchets</td>
-					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="90 kg flaming projectiles that can be launched at 300 meter distance and accuratly hit target">info</button></td>
-					<td><progress class="progress progress-success" value="1" max="10"></progress></td>
-					<td class="text-xs-center">
-						<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-						<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
-					</td>
-				</tr>
-				<tr>
-					<td>Crusaders</td>
-					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Deus Vult">info</button></td>
-					<td><progress class="progress progress-success" value="3" max="10"></progress></td>
-					<td class="text-xs-center">
-						<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-						<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
-					</td>
-				</tr>
-				<tr>
-					<td>Dank Memes</td>
-					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Thomas the Dank engine">info</button></td>
-					<td><progress class="progress progress-success" value="9" max="10"></progress></td>
-					<td class="text-xs-center">
-						<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-						<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
-					</td>
-				</tr>
+				@empty
+				<div class="alert alert-info" role="alert">
+			  		<strong>Heads up!</strong> There are no items listed for this event.
+				@endforelse
 			</tbody>
 		</table>
 		</div>

@@ -32,7 +32,9 @@ class EventsController extends Controller
 	 */
 	public function detail($id) {
 		$event = Event::GetEventById($id);
-		return view('events.detail', ['event' => $event]);
+		$items = Event::GetEventItems($id);
+		// var_dump($items);
+		return view('events.detail', ['event' => $event, 'items' => $items, ]);
 	}
 
 	/**
@@ -100,6 +102,16 @@ class EventsController extends Controller
 		$this->validate($request, [
 			'toBeAdded' => 'required'
 		]);
+
+		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
+	}
+
+	public function addItemToEvent(Request $request) {
+		$this->validate($request, [
+			'item' => 'required'
+		]);
+
+		$result = Event::AddItemToEvent($request->item, $request->description, $request->event_id);
 
 		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 	}

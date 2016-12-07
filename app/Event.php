@@ -43,6 +43,17 @@ class Event extends Model
 	}
 
 	/**
+	 *  Convert json array to array of Items
+	 */
+	private static function convertJsonToItemList($json_list) {
+		$items = array();
+		foreach ($json_list as $json_item) {
+			array_push($items, self::convertJsonToItem($json_item));
+		}
+		return $items;
+	}
+
+	/**
 	 *  Convert json to Event object
 	 */
 	private static function convertJsonToEvent($json) {
@@ -54,6 +65,19 @@ class Event extends Model
 		if(isset($json->startDate)) $event->datetime_start = $json->startDate;
 		if(isset($json->endDate)) $event->datetime_end = $json->endDate;
 		return $event;
+	}
+
+	/**
+	 *  Convert json to Item object
+	 */
+	private static function convertJsonToItem($json) {
+		$item = new Item();
+		if(isset($json->id)) $item->id = $json->id;
+		if(isset($json->name)) $item->name = $json->name;
+		if(isset($json->description)) $item->description = $json->description;
+		if(isset($json->location)) $item->score = $json->score;
+		if(isset($json->eventId)) $item->eventId = $json->eventId;
+		return $item;
 	}
 
 	/**
@@ -70,6 +94,14 @@ class Event extends Model
 	public static function GetEventById($id) {
 		$event = json_decode(file_get_contents(self::$url . '/event?id=' .urlencode($id)));
 		return self::convertJsonToEvent($event);
+	}
+
+	/**
+	 *  Return all events found by webservice
+	 */
+	public static function GetEventItems($id) {
+		$items = json_decode(file_get_contents(self::$url . '/itemsforevent?eventid=' .urlencode($id)));
+		return self::convertJsonToItemList($items);
 	}
 
 	/**
@@ -111,6 +143,44 @@ class Event extends Model
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_POST, true);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $json_event);
+		curl_exec($curl);
+		curl_close($curl);
+	}
+
+
+	/**
+	 *  Add Item to event using the web service
+	 */
+	public static function AddItemToEvent($item, $description, $id) {
+		$json = self::createPostFieldsAdditem($item, $description, $id);
+		self::pushEventItemToWebservice($json);
+	}
+
+	/**
+	 *  Convert Event object to post field string
+	 */
+	private static function createPostFieldsAdditem($item, $description, $id) {
+		$json = 
+			'name=' 
+			. $item
+			. '&description=' 
+			. $description
+			. '&eventid=' 
+			. $id;
+		return $json; 
+	}
+
+	/**
+	 *  Push item (post field string) to web service
+	 * 
+	 *  SRC: http://stackoverflow.com/questions/15834164/sending-data-to-a-webservice-using-post
+	 */
+	private static function pushEventItemToWebservice($json) {
+		$curl = curl_init(self::$url . '/additem');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
 		curl_exec($curl);
 		curl_close($curl);
 	}
