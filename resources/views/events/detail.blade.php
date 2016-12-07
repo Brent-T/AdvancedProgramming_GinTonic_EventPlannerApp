@@ -174,6 +174,38 @@
 	</div>
 </div>
 
+<!-- Modal Add Item -->
+<div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		{!! Form::open(['url' => '/events/' . $event->id . '/additem', 'method' => 'POST', 'class' => 'form']) !!}
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Add item</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+					{!! Form::label('name', 'name:') !!}
+					{!! Form::text('name', '', ['class' => 'form-control' ]) !!}
+					{!! Form::label('description', 'description:') !!}
+					{!! Form::text('description', '', ['class' => 'form-control' ]) !!}
+			</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				{!! Form::submit('Add item', ['class' => 'btn btn-primary']) !!}
+				{!! Form::hidden('event_id', $event->id) !!}
+			</div>
+		{!! csrf_field() !!}
+		{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+
 <!-- Modal Suggest location -->
 <div class="modal fade" id="addpeople" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -227,64 +259,42 @@
 				<tr>
 					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
 					<td class="text-xs-left vcenter-name">Brent Timmermans</td>
-					<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
 				<tr>
 					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
 					<td class="text-xs-left vcenter-name">Alessio De Groote</td>
-					<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
 				<tr>
 					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
 					<td class="text-xs-left vcenter-name">Dieter Deschuiteneer</td>
-					<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
 				<tr>
 					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
 					<td class="text-xs-left vcenter-name">Jonas Reyniers</td>
-					<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
 				<tr>
 					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
 					<td class="text-xs-left vcenter-name">Timothy Dewolf</td>
-					<td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td>
+					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-8">
-		<h3>Requirements</h3>
-		<table class="table table-requirements">
-			<tbody>
-				<tr>
-					<td>Gender Equal food</td>
-					<td>dafuq is this even?</td>
-				</tr>
-				<tr>
-					<td>Apache Helicopters</td>
-					<td>CHOP CHOP MOFO'S</td>
-				</tr>
-				<tr>
-					<td>Trebuchets</td>
-					<td>90 kg flaming projectiles that can be launched at 300 meter distance and accuratly hit target</td>
-				</tr>
-				<tr>
-					<td>Crusaders</td>
-					<td>Deus Vult</td>
-				</tr>
-				<tr>
-					<td>Dank Memes</td>
-					<td>Thomas the Dank engine</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-<!-- Suggestions -->
-<div class=row>
-	<div class="col-xs-12 col-sm-12 col-md-12">
-		<h3>Suggestions</h3>
-		<table class="table table-suggestions">
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="col-xs-8 col-sm-8 col-md-8">
+				<h3>Items</h3>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<button type="button" class="btn btn-outline-primary btn-sm float-xs-right" data-toggle="modal" data-target="#addItem"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Add item</button>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<table class="table table-suggestions">
 			<tbody>
 				<tr>
 					<td>Gender Equal food</td>
@@ -333,6 +343,7 @@
 				</tr>
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 @endsection
