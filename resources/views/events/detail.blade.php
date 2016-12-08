@@ -296,7 +296,7 @@
 						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}" alt=""></td>
 					@endif
 					<!-- <td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td> -->
-					<td class="text-xs-left vcenter-name">{{$invitee->firstname}} {{$invitee->surname}}</td>
+					<td class="text-xs-left vcenter-name">{{$invitee->firstname}} {{$invitee->surname}} @if ($invitee->id == Session::get('user')->id) (me) @endif</td>
 					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
 				@empty
