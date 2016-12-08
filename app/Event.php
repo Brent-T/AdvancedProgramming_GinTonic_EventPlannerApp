@@ -11,16 +11,17 @@ class Event extends Model
 
 	// Properties of Event
 	protected $fillable = [
-		'id', 'name', 'description', 'location', 'datetime_start', 'datetime_end'
+		'id', 'name', 'description', 'location', 'datetime_start', 'datetime_end', 'owner'
 	];
 
-	public function __construct($name = "", $description = "", $location = "", $datetime_start = "", $datetime_end = "", $id = '1') {
+	public function __construct($name = "", $description = "", $location = "", $datetime_start = "", $datetime_end = "", $id = '1', $owner = "") {
 		$this->name = $name;
 		$this->description = $description;
 		$this->location = $location;
 		$this->datetime_start = $datetime_start;
 		$this->datetime_end = $datetime_end;
 		$this->id = $id;
+		$this->owner = $owner;
 	}
 
 	/**
@@ -75,6 +76,7 @@ class Event extends Model
 		if(isset($json->location)) $event->location = $json->location;
 		if(isset($json->startDate)) $event->datetime_start = $json->startDate;
 		if(isset($json->endDate)) $event->datetime_end = $json->endDate;
+		if(isset($json->ownerId)) $event->owner = $json->ownerId;
 		return $event;
 	}
 
@@ -249,6 +251,43 @@ class Event extends Model
 	 */
 	private static function pushInviteesToWebservice($json) {
 		$curl = curl_init(self::$url . '/linkusertoevent');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+		$response = curl_exec($curl);
+		curl_close($curl);
+
+		return $response;
+	}
+
+
+	/**
+	 *  Add event using the web service
+	 */
+	public static function DeleteEvent($eventid) {
+		$json = self::createPostFieldsDeleteEvent($eventid);
+		$result = self::pushDeleteEventToWebservice($json);
+		return $result;
+	}
+
+	/**
+	 *  Convert userid to post field string
+	 */
+	private static function createPostFieldsDeleteEvent($eventid) {
+		$json = 
+			'id=' 
+			. $eventid;
+		return $json; 
+	}
+
+	/**
+	 *  Push delete event trigger (post field string) to web service
+	 * 
+	 *  SRC: http://stackoverflow.com/questions/15834164/sending-data-to-a-webservice-using-post
+	 */
+	private static function pushDeleteEventToWebservice($json) {
+		$curl = curl_init(self::$url . '/deleteevent');
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_POST, true);

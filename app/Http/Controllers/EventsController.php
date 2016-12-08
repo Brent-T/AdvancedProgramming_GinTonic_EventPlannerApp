@@ -34,7 +34,6 @@ class EventsController extends Controller
 		$event = Event::GetEventById($id);
 		$items = Event::GetEventItems($id);
 		$invitees = Event::GetInvitees($id);
-		//var_dump($invitees);
 		return view('events.detail', ['event' => $event, 'items' => $items, 'invitees' => $invitees, ]);
 	}
 
@@ -93,6 +92,26 @@ class EventsController extends Controller
 	}
 
 	/**
+	 *  Route for handling post of deleting this event
+	 */
+	public function deleteEvent(Request $request) {
+		$event = Event::GetEventById($request->event_id);
+		$owner = ($event->owner);
+		$current_user = ($request->session()->get('user')->id);
+		if ($current_user === $owner) {
+			$result = Event::DeleteEvent($request->event_id);
+			if($result == true) {
+				return redirect()->action('EventsController@index');
+			} else {
+				echo 'fail';
+			}
+		} else {
+			echo 'check yo privileges biatch';
+		}
+		
+	}
+
+	/**
 	 *  Route for handling post of adding people to this event
 	 */
 	public function addPeopleToEvent(Request $request) {
@@ -107,7 +126,7 @@ class EventsController extends Controller
 		if($result == true) {
 			return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 		} else {
-			
+
 		}
 		
 	}

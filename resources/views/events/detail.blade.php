@@ -96,7 +96,9 @@
 <div class="row">
 	<div class="float-xs-right custom-button-group-event-detail">
 		<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addpeople" ><i class="fa fa-user-plus" aria-hidden="true"></i> Invite people to join this event</button>
-		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#addpeople" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete this event</button>
+		@if ($event->owner == Session::get('user')->id)
+		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete this event</button>
+		@endif
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestdate"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Suggest date</button>
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestlocation"><i class="fa fa-map-marker" aria-hidden="true"></i> Suggest location</button>
 	</div>
@@ -167,6 +169,35 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				{!! Form::submit('Suggest date', ['class' => 'btn btn-primary']) !!}
+				{!! Form::hidden('event_id', $event->id) !!}
+			</div>
+		{!! csrf_field() !!}
+		{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+
+<!-- Modal Suggest location -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		{!! Form::open(['url' => '/events/' . $event->id . '/delete', 'method' => 'POST', 'class' => 'form']) !!}
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title text-danger" id="myModalLabel">Delete this event?</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+				Are you sure you want to delete this event?
+			</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				{!! Form::submit('Detelete event', ['class' => 'btn btn-danger']) !!}
 				{!! Form::hidden('event_id', $event->id) !!}
 			</div>
 		{!! csrf_field() !!}
