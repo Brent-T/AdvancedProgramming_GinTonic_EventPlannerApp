@@ -33,8 +33,9 @@ class EventsController extends Controller
 	public function detail($id) {
 		$event = Event::GetEventById($id);
 		$items = Event::GetEventItems($id);
-		// var_dump($items);
-		return view('events.detail', ['event' => $event, 'items' => $items, ]);
+		$invitees = Event::GetInvitees($id);
+		//var_dump($invitees);
+		return view('events.detail', ['event' => $event, 'items' => $items, 'invitees' => $invitees, ]);
 	}
 
 	/**
@@ -95,15 +96,20 @@ class EventsController extends Controller
 	 *  Route for handling post of adding people to this event
 	 */
 	public function addPeopleToEvent(Request $request) {
-
-
-		var_dump($request->toBeAdded);
+		//var_dump($request->toBeAdded);
 
 		$this->validate($request, [
 			'toBeAdded' => 'required'
 		]);
 
-		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
+		$result = Event::AddPeopleToEvent($request->toBeAdded, $request->event_id);
+
+		if($result == true) {
+			return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
+		} else {
+			
+		}
+		
 	}
 
 	public function addItemToEvent(Request $request) {

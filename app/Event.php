@@ -54,6 +54,17 @@ class Event extends Model
 	}
 
 	/**
+	 *  Convert json array to array of Users
+	 */
+	private static function convertJsonToInviteeList($json_list) {
+		$invitees = array();
+		foreach ($json_list as $json_item) {
+			array_push($invitees, self::convertJsonToInvitee($json_item));
+		}
+		return $invitees;
+	}
+
+	/**
 	 *  Convert json to Event object
 	 */
 	private static function convertJsonToEvent($json) {
@@ -81,6 +92,18 @@ class Event extends Model
 	}
 
 	/**
+	 *  Convert json to User object
+	 */
+	private static function convertJsonToInvitee($json) {
+		$invitee = new Invitee();
+		if(isset($json->userId)) $invitee->id = $json->userId;
+		if(isset($json->firstName)) $invitee->firstname = $json->firstName;
+		if(isset($json->surName)) $invitee->surname = $json->surName;
+		if(isset($json->email)) $invitee->email = $json->email;
+		return $invitee;
+	}
+
+	/**
 	 *  Return all events for a user
 	 */
 	public static function GetAllEventsForUser($user_id) {
@@ -102,6 +125,15 @@ class Event extends Model
 	public static function GetEventItems($id) {
 		$items = json_decode(file_get_contents(self::$url . '/itemsforevent?eventid=' .urlencode($id)));
 		return self::convertJsonToItemList($items);
+	}
+
+	/**
+	 *  Return all invitees for an event found by webservice
+	 */
+	public static function GetInvitees($id) {
+		$invitees = json_decode(file_get_contents(self::$url . '/usersforevent?eventid=' .urlencode($id)));
+		// var_dump($invitees);
+		return self::convertJsonToInviteeList($invitees);
 	}
 
 	/**
@@ -183,5 +215,47 @@ class Event extends Model
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
 		curl_exec($curl);
 		curl_close($curl);
+	}
+
+	/**
+	 *  Add event using the web service
+	 */
+	public static function AddPeopleToEvent($people, $eventid) {
+		$succes = false;
+		foreach ($people as $person) {
+			$json = self::createPostFieldsAddPerson($person, $eventid);
+			$success = self::pushInviteesToWebservice($json);
+		}
+		return $success;
+
+	}
+
+	/**
+	 *  Convert userid to post field string
+	 */
+	private static function createPostFieldsAddPerson($userid, $eventid) {
+		$json = 
+			'eventid=' 
+			. $eventid
+			. '&userid=' 
+			. $userid;
+		return $json; 
+	}
+
+	/**
+	 *  Push item (post field string) to web service
+	 * 
+	 *  SRC: http://stackoverflow.com/questions/15834164/sending-data-to-a-webservice-using-post
+	 */
+	private static function pushInviteesToWebservice($json) {
+		$curl = curl_init(self::$url . '/linkusertoevent');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+		$response = curl_exec($curl);
+		curl_close($curl);
+
+		return $response;
 	}
 }

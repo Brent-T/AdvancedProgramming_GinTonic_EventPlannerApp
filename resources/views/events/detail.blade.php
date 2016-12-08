@@ -96,6 +96,7 @@
 <div class="row">
 	<div class="float-xs-right custom-button-group-event-detail">
 		<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addpeople" ><i class="fa fa-user-plus" aria-hidden="true"></i> Invite people to join this event</button>
+		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#addpeople" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete this event</button>
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestdate"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Suggest date</button>
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestlocation"><i class="fa fa-map-marker" aria-hidden="true"></i> Suggest location</button>
 	</div>
@@ -256,31 +257,21 @@
 		<h3>Invitees</h3>
 		<table class="table table-invitees">
 			<tbody>
+				@forelse ($invitees as $invitee)
 				<tr>
-					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
-					<td class="text-xs-left vcenter-name">Brent Timmermans</td>
+					@if (file_exists(public_path( '/img/profilepictures/' . $invitee->id . '.jpg' )))
+						<td><img class="invited-thumbnail" src="{{ asset('/img/profilepictures/' . $invitee->id . '.jpg') }}" alt=""></td>
+					@else
+						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}" alt=""></td>
+					@endif
+					<!-- <td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td> -->
+					<td class="text-xs-left vcenter-name">{{$invitee->firstname}} {{$invitee->surname}}</td>
 					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
-				<tr>
-					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
-					<td class="text-xs-left vcenter-name">Alessio De Groote</td>
-					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
-				</tr>
-				<tr>
-					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
-					<td class="text-xs-left vcenter-name">Dieter Deschuiteneer</td>
-					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
-				</tr>
-				<tr>
-					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
-					<td class="text-xs-left vcenter-name">Jonas Reyniers</td>
-					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
-				</tr>
-				<tr>
-					<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td>
-					<td class="text-xs-left vcenter-name">Timothy Dewolf</td>
-					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
-				</tr>
+				@empty
+				<div class="alert alert-info" role="alert">
+			  		<strong>Heads up!</strong> no invitees.
+				@endforelse
 			</tbody>
 		</table>
 	</div>
