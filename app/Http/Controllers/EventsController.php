@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Event;
+use App\Item;
 
 class EventsController extends Controller
 {
@@ -139,5 +140,19 @@ class EventsController extends Controller
 		$result = Event::AddItemToEvent($request->item, $request->description, $request->event_id);
 
 		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
+	}
+
+	public function voteItem(Request $request) {
+		if($request->vote_value == '+1' || $request->vote_value == '-1') {
+			// var_dump($request->event_id);
+			// var_dump($request->item_id);
+			// var_dump($request->vote_value);
+
+			Item::Vote($request->item_id, $request->vote_value);
+			return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
+			
+		} else {
+			echo 'blijft met ui fikken van men HTML';
+		}
 	}
 }

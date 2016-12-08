@@ -88,7 +88,7 @@ class Event extends Model
 		if(isset($json->id)) $item->id = $json->id;
 		if(isset($json->name)) $item->name = $json->name;
 		if(isset($json->description)) $item->description = $json->description;
-		if(isset($json->location)) $item->score = $json->score;
+		if(isset($json->score)) $item->score = $json->score;
 		if(isset($json->eventId)) $item->eventId = $json->eventId;
 		return $item;
 	}

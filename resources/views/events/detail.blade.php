@@ -328,8 +328,13 @@
 					@endif
 					<td><progress class="progress progress-success" value="{{$item->score}}" max="10"></progress></td>
 					<td class="text-xs-center">
-						<button type="button" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-						<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+						{!! Form::open(['url' => '/events/' . $event->id . '/vote', 'method' => 'POST', 'class' => 'form']) !!}
+							<button id="vote_pos" type="submit" name="vote_value" value="+1" class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+							<button id="vote_neg" type="submit" name="vote_value" value="-1" class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+							{!! Form::hidden('event_id', $event->id) !!}
+							{!! Form::hidden('item_id', $item->id) !!}
+						{!! csrf_field() !!}
+						{!! Form::close() !!}
 					</td>
 				</tr>
 				@empty

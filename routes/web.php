@@ -34,6 +34,7 @@
 			Route::post('/addpeople', 'EventsController@addPeopleToEvent')->where('event_id', '[0-9]+');
 			Route::post('/additem', 'EventsController@addItemToEvent')->where('event_id', '[0-9]+');
 			Route::post('/delete', 'EventsController@deleteEvent')->where('event_id', '[0-9]+');
+			Route::post('/vote', 'EventsController@voteItem')->where('event_id', '[0-9]+');
 		});
 
 	});
