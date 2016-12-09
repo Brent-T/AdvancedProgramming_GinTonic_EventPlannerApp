@@ -134,7 +134,6 @@ class Event extends Model
 	 */
 	public static function GetInvitees($id) {
 		$invitees = json_decode(file_get_contents(self::$url . '/usersforevent?eventid=' .urlencode($id)));
-		// var_dump($invitees);
 		return self::convertJsonToInviteeList($invitees);
 	}
 
@@ -154,7 +153,7 @@ class Event extends Model
 			'name=' 
 			. $event->name 
 			. '&description=' 
-			. nl2br($event->description)
+			. $event->description
 			. '&location=' 
 			. $event->location 
 			. '&startDate=' 
@@ -288,6 +287,44 @@ class Event extends Model
 	 */
 	private static function pushDeleteEventToWebservice($json) {
 		$curl = curl_init(self::$url . '/deleteevent');
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+		$response = curl_exec($curl);
+		curl_close($curl);
+
+		return $response;
+	}
+
+	/**
+	 *  Unsubscribe from event using the web service
+	 */
+	public static function UnsubscriveFromEvent($eventid, $userid) {
+		$json = self::createPostFieldsUnsubscribeEvent($eventid, $userid);
+		$result = self::pushUnsubscribeEventToWebservice($json);
+		return $result;
+	}
+
+	/**
+	 *  Convert eventid and userid to post field string
+	 */
+	private static function createPostFieldsUnsubscribeEvent($eventid, $userid) {
+		$json = 
+			'eventid=' 
+			. $eventid
+			.'&userid=' 
+			. $userid;
+		return $json; 
+	}
+
+	/**
+	 *  Push unsubscribe from event trigger (post field string) to web service
+	 * 
+	 *  SRC: http://stackoverflow.com/questions/15834164/sending-data-to-a-webservice-using-post
+	 */
+	private static function pushUnsubscribeEventToWebservice($json) {
+		$curl = curl_init(self::$url . '/unlinkuserfromevent');
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_POST, true);

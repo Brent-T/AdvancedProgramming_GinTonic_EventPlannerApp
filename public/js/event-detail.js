@@ -5,7 +5,9 @@ $(document).ready(function(){
 	$( "#suggest" ).keyup(function() {
 		$('.person-does-not-exist').hide();
 		var text = $( "#suggest" ).val();
-		getUsersContaingString(text);
+		var event = $( "[name='event_id']" ).val();
+		console.log(event);
+		getUsersContaingString(text, event);
 	});	
 
 	$( "#add-person" ).click(function() {
@@ -32,12 +34,12 @@ var initGoogleAutocomplete = function() {
 }
 
 // ajax request to webservice and returning suggested users based in user input
-var getUsersContaingString = function(input) {
+var getUsersContaingString = function(input, id) {
 	$('.typeahead').typeahead('destroy')
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:9000/usercontains?text=",
-		data: input,
+		url: "http://localhost:9000/usercontains?text=" + input + "&eventid=" + id ,
+		// data: input,
 		dataType: "json",
 		async: true,
 		success: function (data) {

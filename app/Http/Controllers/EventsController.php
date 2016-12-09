@@ -113,6 +113,25 @@ class EventsController extends Controller
 	}
 
 	/**
+	 *  Route for handling post of unsubscribing this event
+	 */
+	public function unsubscribeEvent(Request $request) {
+		$event = Event::GetEventById($request->event_id);
+		$owner = ($event->owner);
+		$current_user = ($request->session()->get('user')->id);
+		if ($current_user !== $owner) {
+			$result = Event::UnsubscriveFromEvent($request->event_id, $current_user);
+			if($result == true) {
+				return redirect()->action('EventsController@index');
+			} else {
+				echo 'fail';
+			}
+		} else {
+			echo 'check yo privileges biatch';
+		}	
+	}
+
+	/**
 	 *  Route for handling post of adding people to this event
 	 */
 	public function addPeopleToEvent(Request $request) {

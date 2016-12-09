@@ -98,6 +98,8 @@
 		<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addpeople" ><i class="fa fa-user-plus" aria-hidden="true"></i> Invite people to join this event</button>
 		@if ($event->owner == Session::get('user')->id)
 		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete this event</button>
+		@else
+		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#unsubscribe" ><i class="fa fa-times" aria-hidden="true"></i> Can't make it</button>
 		@endif
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestdate"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Suggest date</button>
 		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#suggestlocation"><i class="fa fa-map-marker" aria-hidden="true"></i> Suggest location</button>
@@ -198,6 +200,35 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				{!! Form::submit('Detelete event', ['class' => 'btn btn-danger']) !!}
+				{!! Form::hidden('event_id', $event->id) !!}
+			</div>
+		{!! csrf_field() !!}
+		{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+
+<!-- Modal Suggest location -->
+<div class="modal fade" id="unsubscribe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		{!! Form::open(['url' => '/events/' . $event->id . '/unsubscribe', 'method' => 'POST', 'class' => 'form']) !!}
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title text-danger" id="myModalLabel">Unsubscribe from event?</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+				Are you sure you want to unsubscribe from this event?
+			</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				{!! Form::submit('Unsubscribe from event', ['class' => 'btn btn-danger']) !!}
 				{!! Form::hidden('event_id', $event->id) !!}
 			</div>
 		{!! csrf_field() !!}
