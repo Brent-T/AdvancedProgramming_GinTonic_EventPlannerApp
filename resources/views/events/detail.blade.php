@@ -326,9 +326,7 @@
 					@else
 						<td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}" alt=""></td>
 					@endif
-					<!-- <td><img class="invited-thumbnail" src="{{ asset('/img/defaultprofilepicture.jpg') }}"></td> -->
 					<td class="text-xs-left vcenter-name">{{$invitee->firstname}} {{$invitee->surname}} @if ($invitee->id == Session::get('user')->id) (me) @endif</td>
-					<!-- <td class="text-xs-left vcenter-name"><a href="" class="btn btn-outline-primary btn-sm">info</a></td> -->
 				</tr>
 				@empty
 				<div class="alert alert-info" role="alert">
@@ -353,9 +351,13 @@
 				<tr>
 					<td>{{$item->name}}</td>
 					@if($item->description)
-					<td><button type="button" class="btn btn-outline-primary btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{$item->description}}">info</button></td>
+					<td>
+						<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#item{{$item->id}}">info</button>
+					</td>
 					@else
-					<td><button type="button" class="btn btn-outline-primary btn-sm disabled" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{$item->description}}">info</button></td>
+					<td>
+						<button type="button" class="btn btn-outline-primary btn-sm disabled" data-toggle="modal" data-target="#item{{$item->id}}">info</button>
+					</td>
 					@endif
 					<td><progress class="progress progress-success" value="{{$item->score}}" max="10"></progress></td>
 					<td class="text-xs-center">
@@ -376,6 +378,38 @@
 		</table>
 		</div>
 	</div>
+
+	<!-- Modals Item details -->
+	@foreach($items as $item)
+	<div class="modal fade" id="item{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			{!! Form::open(['url' => '/events/' . $event->id . '/itemoption', 'method' => 'POST', 'class' => 'form']) !!}
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">{{$item->name}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+					
+				</div>
+			</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					{!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
+					{!! Form::submit('Remove', ['class' => 'btn btn-danger']) !!}
+					{!! Form::hidden('event_id', $event->id) !!}
+				</div>
+			{!! csrf_field() !!}
+			{!! Form::close() !!}
+			</div>
+		</div>
+	</div>
+	@endforeach
 </div>
 @endsection
 
