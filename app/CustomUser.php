@@ -33,6 +33,10 @@ class CustomUser extends Model
 	 *  Login user with given credentials
 	 */
 	public static function Login($user) {
+		// Hash user password
+		$user->password = self::hashUserPassword($user);
+
+		// Post login
 		$json_user = self::createPostFieldsLogin($user);
 		$response = self::postLogin($json_user);
 
@@ -42,6 +46,11 @@ class CustomUser extends Model
 		else {
 			return null;
 		}
+	}
+
+	private static function hashUserPassword($user) {
+		$hash = hash('SHA256', $user->password . $user->email);
+		return $hash;
 	}
 
 	/**
@@ -89,6 +98,10 @@ class CustomUser extends Model
 	 *  Register a user
 	 */
 	public static function Register($user) {
+		// Hash user password
+		$user->password = self::hashUserPassword($user);
+
+		// Post registration
 		$json_user = self::createPostFieldsRegister($user);
 		$response = self::postRegister($json_user);
 
@@ -114,12 +127,6 @@ class CustomUser extends Model
 			. '&password=' 
 			. $user->password;
 		return $json; 
-	}
-
-	private static function hashUserPassword($user) {
-		$hash = hash("SHA256", $user->passsword);
-		var_dump($hash);
-		return $hash;
 	}
 
 	/**
