@@ -17,6 +17,8 @@
 
 					@if (file_exists(public_path( '/img/profilepictures/' . Session::get('user')->id . '.jpg' )))
 						<img class="img-responsive" src="{{ asset('/img/profilepictures/' . Session::get('user')->id . '.jpg') }}" alt="">
+					@elseif (file_exists(public_path( '/img/profilepictures/' . Session::get('user')->id . '.gif' )))
+						<img class="img-responsive" src="{{ asset('/img/profilepictures/' . Session::get('user')->id . '.gif') }}" alt="">
 					@else
 						<img class="img-responsive" src="{{ asset('/img/defaultprofilepicture.jpg') }}" alt="">	
 					@endif
@@ -27,7 +29,7 @@
 						<p>
 						{!! Form::open(array('url' => '/user/profile/updateprofilepicture', 'method' => 'POST', 'class' => 'form', 'files' => 'true')) !!}
 							<a href="#" onclick="triggerFileUpload()">CHANGE</a>
-							{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();' , 'multiple'=>true, 'accept' => '.jpg']) !!}
+							{!! Form::file('profile_picture', ['class' => 'form-control hide trigger-file-upload', 'onchange' => 'this.form.submit();' , 'multiple'=>true, 'accept' => '.jpg, .gif']) !!}
 							{!! Form::hidden('userId', Session::get('user')->id) !!}
 						{!! csrf_field() !!}
 						{!! Form::close() !!}
