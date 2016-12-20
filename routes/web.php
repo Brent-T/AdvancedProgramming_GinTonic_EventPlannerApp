@@ -33,6 +33,7 @@
 			Route::post('/suggestlocation', 'EventsController@addSuggestedLocationToEvent')->where('event_id', '[0-9]+');
 			Route::post('/addpeople', 'EventsController@addPeopleToEvent')->where('event_id', '[0-9]+');
 			Route::post('/additem', 'EventsController@addItemToEvent')->where('event_id', '[0-9]+');
+			Route::post('/deleteItem', 'EventsController@deleteItem')->where('event_id', '[0-9]+');
 			Route::post('/delete', 'EventsController@deleteEvent')->where('event_id', '[0-9]+');
 			Route::post('/unsubscribe', 'EventsController@unsubscribeEvent')->where('event_id', '[0-9]+');
 			Route::post('/vote', 'EventsController@voteItem')->where('event_id', '[0-9]+');

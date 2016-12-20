@@ -359,6 +359,17 @@
 						<button type="button" class="btn btn-outline-primary btn-sm disabled" data-toggle="modal" data-target="#item{{$item->id}}">info</button>
 					</td>
 					@endif
+
+					<td>
+					@if ($event->owner == Session::get('user')->id)
+						{!! Form::open(['url' => '/events/' . $event->id . '/deleteItem', 'method' => 'POST', 'class' => 'form']) !!}
+							{!! Form::submit('Delete', ['class' => 'btn btn-outline-danger btn-sm']) !!}
+							{!! Form::hidden('item_id', $item->id) !!}
+						{!! csrf_field() !!}
+						{!! Form::close() !!}
+					@endif
+					</td>					
+
 					<td><progress class="progress progress-success" value="{{$item->score}}" max="10"></progress></td>
 					<td class="text-xs-center">
 						{!! Form::open(['url' => '/events/' . $event->id . '/vote', 'method' => 'POST', 'class' => 'form']) !!}

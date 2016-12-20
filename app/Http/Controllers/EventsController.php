@@ -64,7 +64,6 @@ class EventsController extends Controller
 		return redirect()->action('EventsController@index');
 	}
 
-
 	/**
 	 *  Route for handling post of adding suggested date to event
 	 */
@@ -79,7 +78,6 @@ class EventsController extends Controller
 
 		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 	}
-
 
 	/**
 	 *  Route for handling post of adding suggested location to event
@@ -135,8 +133,6 @@ class EventsController extends Controller
 	 *  Route for handling post of adding people to this event
 	 */
 	public function addPeopleToEvent(Request $request) {
-		//var_dump($request->toBeAdded);
-
 		$this->validate($request, [
 			'toBeAdded' => 'required'
 		]);
@@ -148,9 +144,11 @@ class EventsController extends Controller
 		} else {
 
 		}
-		
 	}
 
+	/**
+	 *  Suggest item for event
+	 */	
 	public function addItemToEvent(Request $request) {
 		$this->validate($request, [
 			'item' => 'required'
@@ -161,12 +159,22 @@ class EventsController extends Controller
 		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 	}
 
+	/**
+	 *  Delete item from event
+	 */
+	public function deleteItem(Request $request) {
+		if($request->item_id != null) {
+			Item::DeleteItem($request->item_id);		
+		}
+
+		return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
+	}
+
+	/**
+	 *  Bring out vote for item
+	 */
 	public function voteItem(Request $request) {
 		if($request->vote_value == '+1' || $request->vote_value == '-1') {
-			// var_dump($request->event_id);
-			// var_dump($request->item_id);
-			// var_dump($request->vote_value);
-
 			Item::Vote($request->item_id, $request->vote_value);
 			return redirect()->action('EventsController@detail', ['id' => $request->event_id]);
 			

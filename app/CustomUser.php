@@ -48,6 +48,10 @@ class CustomUser extends Model
 		}
 	}
 
+	/**
+	 *	Hash password of the user in combination with
+	 *	user email with SHA256
+	 */
 	private static function hashUserPassword($user) {
 		$hash = hash('SHA256', $user->password . $user->email);
 		return $hash;

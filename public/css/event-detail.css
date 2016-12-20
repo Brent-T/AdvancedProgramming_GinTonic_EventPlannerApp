@@ -11,11 +11,15 @@
 }
 
 .table-suggestions tr td:nth-child(2) {
-	width: 5%;
+	width: 3%;
 }
 
 .table-suggestions tr td:nth-child(3) {
-	width: 30%;
+	width: 3%;
+}
+
+.table-suggestions tr td:nth-child(4) {
+	width: 29%;
     padding-top: 1.7% !important;
     padding: 0;
 }
